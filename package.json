@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"tsc -w -p server\" \"nodemon build/server/app.js\"",
+    "start": "concurrently \"ng serve --proxy-config proxy.conf.json --open\" \"tsc -w -p server\" \"nodemon build/server/app.js\"",
     "predev": "tsc -p server",
     "build": "ng build",
     "test": "ng test",

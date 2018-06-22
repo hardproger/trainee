@@ -1,0 +1,35 @@
+  <div id="admin">
+  <div class="card">
+    <a routerLink="">Back to the home</a>
+    <h4 class="card-header">Registered users</h4>
+    <div class="card-body">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+          <th scope="col">Username</th>
+          <th scope="col">Age</th>
+          <!--<th scope="col">Role</th>-->
+          <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--<tr>-->
+          <!--<td colspan="4">There are no registered users.</td>-->
+        <!--</tr>-->
+        </tbody>
+        <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{user.name}}</td>
+          <!--<td></td>-->
+          <td>{{user.age}}</td>
+          <td>
+            <button class="btn btn-sm btn-danger">
+              <i class="fa fa-trash"></i> Delete
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

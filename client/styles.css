@@ -15,9 +15,3 @@ body {
 .right {
   float: right !important;
 }
-
-a {
-  color: #fff !important;
-  text-decoration: none !important;
-  font-weight: 400;
-}
