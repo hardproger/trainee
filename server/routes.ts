@@ -1,33 +1,11 @@
-import * as express from 'express';
-import * as pg from 'pg';
-import * as path from 'path';
+import User from './controllers/user';
 
-const router = express.Router();
+export default function setRoutes(app) {
+  const userCtrl = new User();
+  app.get('/api/users', userCtrl.getUsers);
+  app.post('/api/user', userCtrl.insert);
+  app.delete('/api/user/:id', userCtrl.delete);
+  app.get('/api/user/:id', userCtrl.find);
+  app.put('/api/user/:id', userCtrl.update);
+}
 
-const connectionString = {
-  user: 'postgres',
-  host: 'localhost',
-  database: 'testdb',
-  password: 'user',
-  port: 5432
-};
-
-router.get('/api/users', (req, res, next) => {
-  const results = [];
-  // const data = {name: req.body.text, age: 18};
-  pg.connect(connectionString, (err, client, done) => {
-    if (err) {
-      done();
-      console.log(err);
-      return res.status(500).json({success: false, data: err});
-    }
-    const query = client.query('SELECT * FROM test');
-    query.on('row', (row) => {
-      results.push(row);
-    });
-    query.on('end', () => {
-      done();
-      return res.json(results);
-    });
-  });
-});
