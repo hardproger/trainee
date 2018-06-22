@@ -9,4 +9,10 @@ export class UserService {
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>('/api/users');
   }
+  deleteUser(user: User): Observable<any> {
+   return this.http.delete(`/api/user/${user.id}`, {responseType: 'text'})
+  }
+  addUser(user: User): Observable<User> {
+    return this.http.post<User>('/api/user', user);
+  }
 }
