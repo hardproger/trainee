@@ -1,46 +1,83 @@
 <div id="admin">
-  <div class="card">
-    <a routerLink="">Back to the home</a>
-    <h4 class="card-header">Registered users</h4>
-    <div class="card-body">
-      <table class="table table-bordered">
-        <thead class="thead-light">
+  <header>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="top-bar">
+          <a class="user-name right">Vlad</a>
+          <img src="http://www.top-madagascar.com/assets/images/admin/user-admin.png" alt="user's image" class="user-img right">
+          <a class="add-user-btn right" data-toggle="modal" data-target="#exampleModal">
+          <i class="fa fa-plus"></i>
+          Create
+        </a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div id="list">
+    <table class="table">
+      <thead>
         <tr>
-          <th scope="col">Username</th>
-          <th scope="col">Age</th>
-          <!--<th scope="col">Role</th>-->
-          <th scope="col">Actions</th>
+          <td>User</td>
+          <td>User role</td>
+          <td>Save changes</td>
+          <td>Delete user</td>
         </tr>
-        </thead>
-        <tbody>
-        <!--<tr>-->
-          <!--<td colspan="4">There are no registered users.</td>-->
-        <!--</tr>-->
-        </tbody>
-        <tbody>
+      </thead>
+      <tbody>
         <tr *ngFor="let user of users">
-          <td>{{user.name}}</td>
-          <!--<td></td>-->
-          <td>{{user.age}}</td>
-          <td class="text-right">
-            <button class="btn btn-sm btn-danger" (click)="deleteUser(user)">
-              <i class="fa fa-trash"></i> Delete
-            </button>
+          <td>
+            <i class="fa fa-at symbol"></i>
+            <input type="text" [value]="user.username" class="username" [(ngModel)]="user.username">
+          </td>
+          <td>
+            <select class="form-control" [(ngModel)] = "user.role">
+              <option *ngFor="let role of roles" [value]="role" [selected]="user.role === role">{{role}}</option>
+            </select>
+          </td>
+          <td>
+            <a (click)="save(user)">Save changes</a>
+          </td>
+          <td>
+            <a (click)="deleteUser(user)">Delete user</a>
           </td>
         </tr>
-        </tbody>
-      </table>
-    </div>
+      </tbody>
+    </table>
   </div>
 
-  <div class="card">
-    <h4 class="card-header">Add new user</h4>
-    <div class="card-body">
-      <form class="form-inline" [formGroup]="addUserForm" (ngSubmit)="addUser()">
-        <input class="form-control mr-2" type="text" name="name" formControlName="name" placeholder="Name">
-        <input class="form-control mr-2" type="number" name="age" formControlName="age" placeholder="Age" min="0">
-        <button class="btn btn-success" type="submit" [disabled]="!addUserForm.valid"><i class="fa fa-plus"></i>Add User</button>
-      </form>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add new user</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form [formGroup]="addUserForm">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input class="form-control mr-2" type="text" name="username" formControlName="username" placeholder="Enter username" id="username">
+            </div>
+            <div class="form-group">
+              <label for="role">Role</label>
+              <select class="form-control mr-2" name="test" formControlName="role" id="role">
+                <option value="" disabled selected>Select role</option>
+                <option  *ngFor="let role of roles" [value]="role">{{role}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="pass">Password</label>
+              <input class="form-control mr-2" type="password" name="password" formControlName="password" placeholder="Enter password" id="pass">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="addUserForm.reset()">Close</button>
+            <button class="btn btn-success" type="submit" [disabled]="!addUserForm.valid" data-dismiss="modal" (click)="addUser()"><i class="fa fa-plus"></i>Add User</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>

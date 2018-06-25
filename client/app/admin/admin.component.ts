@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -11,18 +11,20 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class AdminComponent implements OnInit {
   user = new User();
   users: User[] = [];
+  roles = ['admin', 'moderator', 'user'];
 
   addUserForm: FormGroup;
-  name = new FormControl('', Validators.required);
-  age = new FormControl('', Validators.required);
-
+  username = new FormControl('', Validators.required);
+  role = new FormControl('', Validators.required);
+  password = new FormControl('', Validators.required);
   constructor(private userService: UserService,
               private formBuilder: FormBuilder) { }
   ngOnInit() {
     this.getUsers();
     this.addUserForm = this.formBuilder.group({
-      name: this.name,
-      age: this.age,
+      username: this.username,
+      role: this.role,
+      password: this.password
     });
   }
   getUsers() {
@@ -44,6 +46,11 @@ export class AdminComponent implements OnInit {
         this.addUserForm.reset();
       },
       error => console.log(error)
+    );
+  }
+  save(user: User) {
+    this.userService.editUser(user).subscribe(
+      () => this.getUsers()
     );
   }
 }
