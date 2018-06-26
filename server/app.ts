@@ -3,8 +3,8 @@ import * as path from 'path';
 import * as http from 'http';
 import * as morgan from 'morgan';
 import * as bodyParser from 'body-parser';
-import * as passport from 'passport';
 import * as cookieParser from 'cookie-parser';
+import * as passport from 'passport';
 import * as session from 'express-session';
 
 import setRoutes from './routes';
@@ -21,14 +21,14 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(session({
-  secret: 'my-secret'
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true
 }));
-
-app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
 server.listen(app.get('port'), () => {
-  setRoutes(app, passport);
+  setRoutes(app);
   console.log('Express HTTP server listening on port ' + app.get('port') );
 });
