@@ -7,7 +7,5 @@ export default function setRoutes(app) {
   app.delete('/api/user/:id', userCtrl.delete);
   app.get('/api/user/:id', userCtrl.find);
   app.put('/api/user/:id', userCtrl.update);
-  app.post('/api/register', userCtrl.register);
-  app.post('/api/login', userCtrl.login);
 }
 
