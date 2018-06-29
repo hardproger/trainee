@@ -7,8 +7,9 @@ import * as cookieParser from 'cookie-parser';
 import * as passport from 'passport';
 import * as session from 'express-session';
 import * as flash from 'connect-flash';
-import * as passportConfig from './config/passport';
 import * as models from './models';
+
+const passportConfig = require('./config/passport');
 
 import setRoutes from './routes';
 
@@ -28,7 +29,7 @@ app.use(flash());
 app.use(session({
   secret: 'secret',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());

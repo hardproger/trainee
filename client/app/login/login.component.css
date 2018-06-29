@@ -1,0 +1,43 @@
+@media only screen and (min-width: 768px) {
+  .login-btn {
+    background-color: transparent !important;
+    border: 2px solid #fff !important;
+  }
+}
+
+a {
+  color: #fff !important;
+  text-decoration: none !important;
+  font-weight: 400;
+}
+
+.login-top-text h6 {
+  font-size: 12px;
+}
+
+.login input[type="text"], input[type='password'] {
+  width: 100%;
+  font-size: 14px;
+  color: #2d3339;
+  border-radius: 3px;
+  border: 1px solid #d1d1d1;
+}
+
+.login-btn {
+  border-radius: 3px;
+  background-color: #ff7c2e;
+  color: #fff;
+  border: 2px solid #ff7c2e;
+  width: 100%;
+}
+
+.info a {
+  font-size: .7rem;
+}
+
+.hide-btn {
+  border: 2px solid #fff;
+  border-radius: 3px;
+  padding: 5px 0;
+  font-size: 14px;
+}

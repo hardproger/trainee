@@ -7,7 +7,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
     .find({ where: { username: username } })
     .then((user) => {
       if(!user) {
-        return done(null, false, { message: 'Unknown user ' + username });
+        return done(null, false);
       }
       models.User.comparePassword(password, user.password, (err, isMatch) => {
         if (err) {
@@ -16,7 +16,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
         if(isMatch) {
           return done(null, user);
         } else {
-          return done(null, false, { message: 'Invalid password' });
+          return done(null, false);
         }
       });
     })
