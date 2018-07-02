@@ -18,4 +18,13 @@ export class UserService {
   editUser(user: User): Observable<any> {
     return this.http.put(`api/user/${user.id}`, user, {responseType: 'text'});
   }
+  login(cred): Observable<any> {
+    return this.http.post('/api/login', cred);
+  }
+  register(user: User): Observable<User> {
+    return this.http.post('/api/user', user);
+  }
+  logout(): Observable<any> {
+    return this.http.get('/api/logout');
+  }
 }

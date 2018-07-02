@@ -1,19 +1,35 @@
 import * as models from '../models/index';
-const passport = require('passport');
+import handleResponse from '../utils/handleResponse';
 
 export default class User {
   // get all users
   getUsers = (req, res) => {
-    models.User.findAll({})
-      .then(users => res.json(users));
+    models.User.findAll({
+      order: 'id'
+    })
+    .then(users => res.json(users));
   }
-  // add new user
+  // add or register new user
   insert = (req, res) => {
-    models.User.create({
-      username: req.body.username,
-      role: req.body.role || 'user',
-      password: req.body.password
-    }).then(user => res.json(user));
+    models.User.find({
+      where: {username: req.body.username}
+    })
+    .then((user) => {
+      if (!user) {
+        models.User
+          .create({
+            username: req.body.username,
+            role: 'user',
+            password: req.body.password,
+            imgUrl: 'default.png'
+          })
+          .then((regUser) => {
+            handleResponse(res, 200, 'success', 'You have successfully registered!', regUser);
+          });
+      } else {
+        handleResponse(res, 401, 'error', 'The username has already exists.');
+      }
+    });
   }
   // delete user
   delete = (req, res) => {
@@ -34,60 +50,41 @@ export default class User {
     }).then(user => res.json(user));
   }
   // update user
-  update = (req, res, next) => {
+  update = (req, res) => {
     models.User.find({
-      where: {
-        id: req.params.id
-      }
-    }).then(user => {
-        if (user) {
-          user.updateAttributes({
-            username: req.body.username,
-            role: req.body.role,
-            password: req.body.password
-          }).then(upUser => res.json(upUser));
-        }
-      });
-  }
-  register = (req, res) => {
-    models.User.find({
-      where: { username: req.body.username }
+      where: {username: req.body.username}
     })
-      .then((user) => {
-        if (!user) {
-          models.User
-            .create({
+    .then(user => {
+      if (!user) {
+        models.User.find({
+          where: {
+            id: req.params.id
+          }
+        }).then(user => {
+          if (user) {
+            user.updateAttributes({
               username: req.body.username,
-              role: 'user',
+              role: req.body.role,
               password: req.body.password
-            })
-            .then(regUser => {
-                res.json({
-                  status: 'success',
-                  message: 'You have successfully registered!',
-                  user: regUser
-                });
-          });
-        } else {
-          res.json({
-            status: 'error',
-            message: 'The username already exists. Please take another!'
-          });
-        }
-      });
+            }).then(upUser => res.json(upUser));
+          }
+        });
+      } else {
+        handleResponse(res, 401, 'error', 'The username has already exists!');
+      }
+    });
   }
   login = (req, res) => {
-    res.json({
-      status: 'success',
-      message: 'You have successfully logged in!',
-      user: req.user
-    });
+    const user = {
+      id: req.user.id,
+      username: req.user.username,
+      role: req.user.role,
+      token: req.user.token
+    };
+    handleResponse(res, 200, 'success', 'You have successfully logged in!', user);
   }
   logout = (req, res) => {
     req.logout();
-    res.json({
-      status: 'success',
-      message: 'You have successfully logged off!'
-    });
+    handleResponse(res, 200, 'success', 'You have successfully logged off');
   }
 }

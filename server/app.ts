@@ -9,7 +9,7 @@ import * as session from 'express-session';
 import * as flash from 'connect-flash';
 import * as models from './models';
 
-const passportConfig = require('./config/passport');
+const passportConfig = require('./utils/passport');
 
 import setRoutes from './routes';
 

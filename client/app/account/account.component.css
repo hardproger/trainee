@@ -1,0 +1,13 @@
+a {
+	cursor: pointer;
+	color: #fff !important;
+	display: block;
+}
+
+a:hover {
+	text-decoration: underline !important;
+}
+
+#account {
+	font-size: 1rem;
+}

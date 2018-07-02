@@ -1,7 +1,10 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {ToastyService, ToastyConfig} from 'ng2-toasty';
+
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.services';
 
 @Component({
   selector: 'app-admin',
@@ -18,7 +21,12 @@ export class AdminComponent implements OnInit {
   role = new FormControl('', Validators.required);
   password = new FormControl('', Validators.required);
   constructor(private userService: UserService,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private auth: AuthService,
+              private toastyService: ToastyService,
+              private toastyConfig: ToastyConfig) {
+    this.toastyConfig.theme = 'bootstrap';
+  }
   ngOnInit() {
     this.getUsers();
     this.addUserForm = this.formBuilder.group({
@@ -35,7 +43,10 @@ export class AdminComponent implements OnInit {
   }
   deleteUser(user) {
     this.userService.deleteUser(user).subscribe(
-      () => this.getUsers()
+      () => {
+          this.getUsers();
+          this.toastyService.success(this.setOptions('Success', 'The user was successfully deleted'));
+        }
     );
   }
   addUser() {
@@ -44,13 +55,33 @@ export class AdminComponent implements OnInit {
         this.users.push(res);
         this.getUsers();
         this.addUserForm.reset();
+        this.toastyService.success(this.setOptions('Success', 'The user was successfully added'));
       },
       error => console.log(error)
     );
   }
   save(user: User) {
     this.userService.editUser(user).subscribe(
-      () => this.getUsers()
+      () => {
+        if (this.auth.currentUser.id === user.id) {
+          this.auth.currentUser.username = user.username;
+          this.auth.currentUser.role = user.role;
+        }
+        this.getUsers();
+        this.toastyService.success(this.setOptions('Success', 'The changes was successfully saved'));
+      },
+      error => {
+        this.toastyService.error(this.setOptions('Error', 'The username has already exists!'));
+      }
     );
+  }
+  setOptions(title, msg) {
+    return {
+      title: title,
+      msg: msg,
+      showClose: true,
+      timeout: 2500,
+      theme: 'bootstrap'
+    };
   }
 }

@@ -4,13 +4,20 @@ module.exports = function(sequelize, DataTypes) {
   var userSchema = sequelize.define('User', {
     username: {
       type: DataTypes.STRING,
-      unique: true
+      unique: true,
+      allowNull: false
     },
     role: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false
     },
     password: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    imgUrl: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   },
   {

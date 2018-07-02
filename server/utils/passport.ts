@@ -1,19 +1,26 @@
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var models = require('../models');
+import * as passport from 'passport';
+import * as passportLocal from 'passport-local';
+import * as models from '../models/index';
+import * as jwt from 'jsonwebtoken';
 
-passport.use(new LocalStrategy(function(username, password, done) {
+const LocalStrategy = passportLocal.Strategy;
+
+passport.use(new LocalStrategy((username, password, done) => {
   models.User
-    .find({ where: { username: username } })
+    .find({
+      where: { username: username }
+    })
     .then((user) => {
       if(!user) {
         return done(null, false);
       }
       models.User.comparePassword(password, user.password, (err, isMatch) => {
-        if (err) {
+        if(err) {
           return done(err);
         }
         if(isMatch) {
+          const token = jwt.sign({user: user}, 'secretToken');
+          user.token = token;
           return done(null, user);
         } else {
           return done(null, false);
@@ -31,7 +38,9 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((userId, done) => {
   models.User
-    .find({ where: { id: userId } })
+    .find({
+      where: { id: userId }
+    })
     .then((user) => {
       done(null, user);
     })

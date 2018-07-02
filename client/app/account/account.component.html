@@ -1,0 +1,5 @@
+<div id="account" class="text-center text-sm-center text-md-right text-lg-right">
+	<span>Hello, {{auth.currentUser.username}}!</span>
+	<a routerLink="/admin">Go to admin panel</a>
+	<a (click)="auth.logout()">Log out</a>
+</div>
