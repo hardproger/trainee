@@ -33,14 +33,22 @@ export class AuthService {
   }
   logout() {
     this.userService.logout().subscribe(
-    res => {
-      console.log(res);
-      localStorage.removeItem('token');
-      this.currentUser = new User();
-      this.loggedIn = false;
-      this.isAdmin = false;
-      this.router.navigate(['/']);
-      }
+      (res) => {
+        console.log(res);
+        localStorage.removeItem('token');
+        this.currentUser = new User();
+        this.loggedIn = false;
+        this.isAdmin = false;
+        this.router.navigate(['/']);
+        },
+        (err) => {
+          console.log(err);
+          localStorage.removeItem('token');
+          this.currentUser = new User();
+          this.loggedIn = false;
+          this.isAdmin = false;
+          this.router.navigate(['/']);
+        }
     );
   }
   setCurrentUser(tokenUser) {

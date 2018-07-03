@@ -4,23 +4,23 @@
   </div>
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div class="row">
-      <div class="col-lg-4 col-md-4 col-sm-12 col-12 pr-lg-1 pr-md-1">
-        <input formControlName="username" type="text" name="username" placeholder="Usuario" class="p-lg-1 p-md-1 mb-sm-3 mb-3 mb-lg-0 mb-md-0" required>
+      <div class="col-md-4 col-12 pr-md-1">
+        <input formControlName="username" type="text" name="username" placeholder="Usuario" class="p-1 mb-sm-3 mb-3 mb-md-0" required>
       </div>
-      <div class="col-lg-4 col-md-4 col-sm-12 col-12 px-lg-1 px-md-1">
-        <input formControlName="password" type="password" name="password" placeholder="Clave" class="p-lg-1 p-md-1 mb-sm-3 mb-3 mb-lg-0 mb-md-0" required>
+      <div class="col-md-4 col-12 px-lg-1 px-md-1">
+        <input formControlName="password" type="password" name="password" placeholder="Clave" class="p-1 mb-sm-3 mb-3 mb-md-0" required>
       </div>
-      <div class="col-lg-4 col-md-4 col-sm-12 pl-lg-1 pl-md-1 mb-3 mb-sm-3 mb-lg-0 mb-md-0">
+      <div class="col-md-4 col-12 pl-md-1 mb-3 mb-3 mb-md-0">
         <button class="login-btn" type="submit" [disabled]="!loginForm.valid">deposit</button>
       </div>
     </div>
   </form>
   <div class="row">
-    <div class="col-lg-4 col-md-4 col-sm-6 col-6 text-left info">
+    <div class="col-md-4 col-6 text-left info">
       <input type="checkbox" id="remember">
       <label for="remember">remember data</label>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-6 col-6 text-left info">
+    <div class="col-md-4 col-6 text-left info">
       <a href="#">Did you forgot your password?</a>
     </div>
   </div>

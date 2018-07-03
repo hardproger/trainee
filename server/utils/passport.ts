@@ -11,14 +11,14 @@ passport.use(new LocalStrategy((username, password, done) => {
       where: { username: username }
     })
     .then((user) => {
-      if(!user) {
+      if (!user) {
         return done(null, false);
       }
       models.User.comparePassword(password, user.password, (err, isMatch) => {
-        if(err) {
+        if (err) {
           return done(err);
         }
-        if(isMatch) {
+        if (isMatch) {
           const token = jwt.sign({user: user}, 'secretToken');
           user.token = token;
           return done(null, user);

@@ -33,7 +33,9 @@ export class LoginComponent implements OnInit {
   }
   login() {
     this.auth.login(this.loginForm.value).subscribe(
-      () => {},
+      () => {
+        this.toastyService.success(this.setOptions('Success', 'You have successfully loggin in!'));
+      },
       error => {
         this.toastyService.error(this.setOptions('Error', 'Username or password are invalid!'));
       }

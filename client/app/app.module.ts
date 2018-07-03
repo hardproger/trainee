@@ -15,7 +15,7 @@ import { RegisterComponent } from './register/register.component';
 
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.services';
-import { AuthGuardLogin } from './services/auth-guard-login.service';
+import { AuthGuardLogin } from './services/login-guard';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -28,7 +28,7 @@ export function tokenGetter() {
     HomeComponent,
     LoginComponent,
     AccountComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,9 +38,7 @@ export function tokenGetter() {
     FormsModule,
     ReactiveFormsModule,
     JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter
-      }
+      config: {tokenGetter: tokenGetter}
     })
   ],
   providers: [

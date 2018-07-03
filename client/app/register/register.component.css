@@ -1,9 +1,21 @@
+@media only screen and (min-width: 768px) {
+  .regs label {
+    font-size: 1.2rem !important;
+    font-weight: bold !important;
+  }
+}
+
 .regs label {
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.regs a {
+  color: #319dd4;
 }
 
 .btn-reg {
+  margin-top: 36px;
   height: 35px;
   background-color: #ff7c2e;
   border: none;
@@ -13,6 +25,7 @@
   padding: 0 40px;
   border-radius: 3px;
   width: 100%;
+  outline: none;
 }
 
 select, input[type="password"], input[type="text"] {
