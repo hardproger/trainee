@@ -5,6 +5,7 @@ import { RoutingModule } from './routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
 import {ToastyModule} from 'ng2-toasty';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
@@ -29,6 +30,7 @@ export function tokenGetter() {
     LoginComponent,
     AccountComponent,
     RegisterComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,

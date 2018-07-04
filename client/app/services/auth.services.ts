@@ -14,7 +14,7 @@ export class AuthService {
   currentUser: User = new User();
   constructor(private userService: UserService,
               private router: Router,
-              private jwtHelper: JwtHelperService) {
+              private jwtHelper: JwtHelperService,) {
     const token = localStorage.getItem('token');
     if (token) {
       const tokenUser = this.jwtHelper.decodeToken(token).user;
@@ -57,6 +57,5 @@ export class AuthService {
     this.currentUser.username = tokenUser.username;
     this.currentUser.role = tokenUser.role;
     this.currentUser.imgUrl = '/assets/userImg/' + tokenUser.imgUrl;
-    this.currentUser.role === 'admin' ? this.isAdmin = true : this.isAdmin = false;
-    }
+  }
 }

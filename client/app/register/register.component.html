@@ -9,7 +9,7 @@
     <form class="px-md-5 text-left" [formGroup]="registerForm">
       <div class="reg1" *ngIf="regStep === 1">
           <div class="row mt-lg-4 mt-md-4">
-            <div class="col-lg-2 col-md-6 col-12 ml-lg-5 mt-2">
+            <div class="col-lg-2 col-md-6 col-12 ml-lg-5 mt-3 mt-lg-2">
               <label for="sex">I am</label>
               <select name="sex" id="sex" formControlName="sex">
                 <option value=""></option>
@@ -47,7 +47,7 @@
                 <option value="Africa">Africa</option>
               </select>
             </div>
-            <div class="col-lg-2 col-md-4 col-12 mt-md-2">
+            <div class="col-lg-2 col-md-4 col-12 mt-md-3 mt-lg-2">
               <button class="btn-reg" (click)="checkValid1()">Following</button>
             </div>
           </div>
