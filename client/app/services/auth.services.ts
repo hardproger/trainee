@@ -24,6 +24,7 @@ export class AuthService {
   login(usernameAndPass) {
     return this.userService.login(usernameAndPass).map(
       res => {
+        console.log(res);
         localStorage.setItem('token', res.user.token);
         const tokenUser = this.jwtHelper.decodeToken(res.user.token).user;
         this.setCurrentUser(tokenUser);
@@ -41,14 +42,7 @@ export class AuthService {
         this.isAdmin = false;
         this.router.navigate(['/']);
         },
-        (err) => {
-          console.log(err);
-          localStorage.removeItem('token');
-          this.currentUser = new User();
-          this.loggedIn = false;
-          this.isAdmin = false;
-          this.router.navigate(['/']);
-        }
+        (err) => console.log(err)
     );
   }
   setCurrentUser(tokenUser) {

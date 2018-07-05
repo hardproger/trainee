@@ -1,0 +1,38 @@
+a {
+  color: #fff !important;
+  text-decoration: none !important;
+  font-weight: 400;
+}
+
+header {
+  background-color: #319dd4;
+  padding-top: 10px;
+}
+
+.logo img {
+  height: 60px;
+}
+
+.logo h6 {
+  padding-left: 15px;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.hide-btn {
+  border: 2px solid #fff;
+  border-radius: 3px;
+  padding: 5px 0;
+  font-size: 14px;
+}
+
+.hero-color {
+  background: url("http://mmp-project.net/wp-content/uploads/2015/08/gasrto2.jpg");
+  background-position: center 10%;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+.carousel {
+  background-color: #319dd4;
+}

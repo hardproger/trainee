@@ -13,7 +13,7 @@ export default class User {
     models.User
       .create({
         username: req.body.username,
-        role: 'user',
+        role: req.user && req.user.role === 'admin' ? req.body.role : 'user',
         password: req.body.password,
         imgUrl: 'default.png'
       })
@@ -47,6 +47,9 @@ export default class User {
         where: {id: req.params.id}
       })
         .then(user => {
+          if (user.role === 'admin' && req.user.role === 'moderator') {
+            util.handleResponse(res, 403, 'error', 'You haven\'t permission for do this!');
+          }
           user.updateAttributes({
             username: req.body.username || user.username,
             password: req.body.password || user.password,

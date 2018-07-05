@@ -1,70 +1,112 @@
-<div id="home">
-<header>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-lg-6 col-sm-12 text-sm-center text-center text-lg-left text-md-left">
-
-        <div class="logo mb-3 mb-sm-3 mb-lg-0 mb-md-0">
-          <img src="https://datingchile.cl/images/layouts/logo.svg" alt="Logo">
-          <h6>Find Your Ideal</h6>
+<div id="start">
+  <header>
+      <nav id="navbar" class="shadow">
+        <div class="my-container">
+          <div class="row">
+            <div class="col-lg-6 left">
+              <ul>
+                <li class="desk-redir">
+                  <div class="main-nav-btn">
+                    <a href="/home">
+                      <img src="https://datingchile.cl/images/layouts/logo.svg" class="logo">
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <a href="/home" class="main-nav-btn active">
+                    <span>Initiation</span>
+                </a>
+                </li>
+                <li>
+                  <a href="/home" class="main-nav-btn">
+                    <span>Events</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/home" class="main-nav-btn">
+                    <span>Blogs</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/home" class="main-nav-btn special-nav">
+                    <span>Payment Center</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-6 right text-right">
+              <ul>
+                <li>
+                  <div class="main-nav-btn">
+                    <div class="labels">
+                      <span class="vip-days">
+                        <a href="/home">
+                          <span>10 Horas VIP</span>
+                        </a>
+                      </span>
+                      <span class="marker">•</span>
+                      <a href="/home">
+                        <span>
+                          Configuration
+                          <i class="fa fa-gear"></i>
+                        </span>
+                      </a>
+                    </div>
+                    <div class="topbar-user">
+                      <a href="/home" class="user-pic">
+                        <img src="https://datingchile.cl/images/user/defaultMan.jpg" width="45" height="50">
+                      </a>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-
-        <div *ngIf="!auth.loggedIn" class="logo mb-3 mb-sm-3 mb-lg-0 mb-md-0 hide-btn d-lg-none d-md-none">
-          <a class="toggle-login-btn" data-toggle="collapse" href="#login-form" role="button" aria-expanded="false" aria-controls="login-form">
-            Already you have a profile?
-          </a>
-        </div>
-      </div>
-
-      <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-        <app-login *ngIf="!auth.loggedIn"></app-login>
-        <app-account *ngIf="auth.loggedIn"></app-account>
+      </nav>
+  </header>
+  <div id="main">
+    <div class="my-container">
+      <div class="col-menu">
+        <ul class="main-left-menu">
+          <li>
+            <a href="">
+              Recommended
+              <i class="number">0</i>
+            </a>
+          </li>
+          <li class="item">
+            <a href="">
+              Recommended
+              <i class="number">0</i>
+            </a>
+          </li>
+          <li class="item">
+            <a href="">
+              Recommended
+              <i class="number">0</i>
+            </a>
+          </li>
+          <li class="item">
+            <a href="">
+              Recommended
+              <i class="number">0</i>
+            </a>
+          </li>
+          <li class="item">
+            <a href="">
+              Recommended
+              <i class="number">0</i>
+            </a>
+          </li>
+          <li class="item">
+            <a href="">
+              Recommended
+              <i class="number">0</i>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
-</header>
-<div id="main">
-  <div class="hero-color py-lg-3 py-md-3 py-sm-3 py-5">
-    <div class="container py-md-5">
-      <app-register></app-register>
-    </div>
-  </div>
-   <div class="carousel">
-    <div class="container">
-      <div class="row py-lg-4 py-4">
-        <div class="col-lg-1 col-4 col-md-2 mr-lg-3">
-          <img src="https://datingchile.cl/dating-profile-photos/57/e4/88/57e4882f4b5bec00184ab2ea_1512217122860_small.jpg" alt="">
-        </div>
-        <div class="col-lg-1 col-4 col-md-2 mr-lg-3">
-          <img src="https://datingchile.cl/dating-profile-photos/57/e4/88/57e4882f4b5bec00184ab2ea_1512217122860_small.jpg" alt="">
-        </div>
-        <div class="col-lg-1 col-4 col-md-2 mr-lg-3">
-          <img src="https://datingchile.cl/dating-profile-photos/57/e4/88/57e4882f4b5bec00184ab2ea_1512217122860_small.jpg" alt="">
-        </div>
-        <div class="col-lg-1 col-md-2 d-md-block d-none mr-lg-3">
-          <img src="https://datingchile.cl/dating-profile-photos/57/e4/88/57e4882f4b5bec00184ab2ea_1512217122860_small.jpg" alt="">
-        </div>
-        <div class="col-lg-1 col-md-2 d-md-block d-none mr-lg-3">
-          <img src="https://datingchile.cl/dating-profile-photos/57/e4/88/57e4882f4b5bec00184ab2ea_1512217122860_small.jpg" alt="">
-        </div>
-        <div class="col-lg-1 col-md-2 d-md-block d-none mr-lg-3">
-          <img src="https://datingchile.cl/dating-profile-photos/57/e4/88/57e4882f4b5bec00184ab2ea_1512217122860_small.jpg" alt="">
-        </div>
-        <div class="col-lg-1 col-md-2 col-md-2 d-lg-block d-none mr-lg-3">
-          <img src="https://datingchile.cl/dating-profile-photos/57/e4/88/57e4882f4b5bec00184ab2ea_1512217122860_small.jpg" alt="">
-        </div>
-        <div class="col-lg-1 col-md-2 d-lg-block d-none mr-lg-3">
-          <img src="https://datingchile.cl/dating-profile-photos/57/e4/88/57e4882f4b5bec00184ab2ea_1512217122860_small.jpg" alt="">
-        </div>
-        <div class="col-lg-1 col-md-2 d-lg-block d-none mr-lg-3">
-          <img src="https://datingchile.cl/dating-profile-photos/57/e4/88/57e4882f4b5bec00184ab2ea_1512217122860_small.jpg" alt="">
-        </div>
-        <div class="col-lg-1 col-md-2 d-none d-lg-block">
-          <img src="https://datingchile.cl/dating-profile-photos/57/e4/88/57e4882f4b5bec00184ab2ea_1512217122860_small.jpg" alt="">
-        </div>
-      </div>
-    </div>
-   </div>
 </div>
-</div>
-<router-outlet></router-outlet>

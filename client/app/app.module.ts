@@ -9,10 +9,11 @@ import { FileSelectDirective } from 'ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
-import { HomeComponent } from './home/home.component';
+import { StartComponent } from './start/start.component';
 import { LoginComponent } from './login/login.component';
 import { AccountComponent } from './account/account.component';
 import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
 
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.services';
@@ -26,11 +27,12 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     AdminComponent,
-    HomeComponent,
+    StartComponent,
     LoginComponent,
     AccountComponent,
     RegisterComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

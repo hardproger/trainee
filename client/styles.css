@@ -15,3 +15,16 @@ body {
 .right {
   float: right !important;
 }
+
+ul {
+ list-style: none;
+}
+
+ul li {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+a {
+  color: #fff;
+}

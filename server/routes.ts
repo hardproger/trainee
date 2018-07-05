@@ -11,5 +11,5 @@ export default function setRoutes(app) {
   app.get('/api/user/:id', util.checkAuth, userCtrl.find);
   app.put('/api/user/:id', util.checkAuth, userCtrl.update);
   app.post('/api/login', passport.authenticate('local'), userCtrl.login);
-  app.get('/api/logout', userCtrl.logout);
+  app.get('/api/logout', util.checkAuth, userCtrl.logout);
 }

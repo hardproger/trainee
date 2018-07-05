@@ -1,38 +1,94 @@
+#start {
+  color: #000;
+  background-color: #fff;
+}
+
+.my-container {
+  padding: 0 300px 0 300px;
+}
+
 a {
-  color: #fff !important;
+  font-size: 16px;
   text-decoration: none !important;
-  font-weight: 400;
 }
 
-header {
-  background-color: #319dd4;
-  padding-top: 10px;
+.shadow {
+  box-shadow: 0 2px 5px 0 rgba(50,50,50,.15);
 }
 
-.logo img {
+#navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
   height: 60px;
-}
-
-.logo h6 {
-  padding-left: 15px;
-  font-weight: 400;
-  font-size: 18px;
-}
-
-.hide-btn {
-  border: 2px solid #fff;
-  border-radius: 3px;
-  padding: 5px 0;
-  font-size: 14px;
-}
-
-.hero-color {
-  background: url("http://mmp-project.net/wp-content/uploads/2015/08/gasrto2.jpg");
-  background-position: center 10%;
-  -webkit-background-size: cover;
-  background-size: cover;
-}
-
-.carousel {
   background-color: #319dd4;
+}
+
+.logo {
+  display: block;
+  height: 40px;
+  margin-top: -10px;
+}
+
+.main-nav-btn {
+  padding: 20px 14px 17px;
+  position: relative;
+  height: 60px;
+  color: #ffffff;
+  transition: .4s;
+}
+
+.main-nav-btn.active {
+  border-bottom: 4px solid #fff;
+}
+
+.special-nav span {
+  border: 2px solid #fff;
+  padding: 3px 15px;
+  border-radius: 4px;
+}
+
+.labels {
+  margin-right: 50px;
+}
+
+.topbar-user {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+}
+
+.col-menu {
+  margin-top: 75px;
+  width: 13rem;
+}
+
+.main-left-menu {
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid;
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+  margin-top: 1.2rem;
+  border-radius: 4px;
+}
+
+.main-left-menu a {
+  color: #515c67 !important;
+}
+
+.number {
+  /*position: absolute;*/
+  /*top: 8px;*/
+  /*right: 1rem;*/
+  font-weight: 400 !important;
+  border-radius: 4px;
+  padding: 4px 6px;
+  color: #fff;
+  background-color: #a4adb7;
+  font-style: normal;
+}
+
+.item {
+  margin-top: 10px;
 }
