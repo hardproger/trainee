@@ -5,7 +5,10 @@ body {
   font-weight: 400;
   color: #fff;
   background: #fff;
-  font-size: 13px;;
+  font-size: 13px;
+  position: relative;
+  min-height: 100%;
+  height: auto;
 }
 
 .left {
@@ -20,11 +23,11 @@ ul {
  list-style: none;
 }
 
-ul li {
-  display: inline-block;
-  vertical-align: middle;
-}
-
 a {
   color: #fff;
+  text-decoration: none !important;
+}
+
+img {
+  max-width: 100%;
 }
