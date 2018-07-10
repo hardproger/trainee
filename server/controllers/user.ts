@@ -1,4 +1,4 @@
-import * as models from '../models/index';
+import { models } from '../models/index';
 import Util from '../utils/utilities';
 const util = new Util();
 
@@ -6,7 +6,7 @@ export default class User {
   // get all users
   getUsers = (req, res) => {
     models.User.findAll({order: 'id'})
-    .then(users => res.json(users));
+      .then(users => res.json(users));
   }
   // add or register new user
   insert = (req, res) => {
@@ -80,7 +80,8 @@ export default class User {
   checkLogin = (req, res) => {
     if (req.isAuthenticated()) {
       util.handleResponse(res, 200, 'success', 'The user is authenticated!');
-  } else {
-    util.handleResponse(res, 403, 'error', 'The user is not authenticated!');
+    } else {
+      util.handleResponse(res, 403, 'error', 'The user is not authenticated!');
+    }
   }
 }

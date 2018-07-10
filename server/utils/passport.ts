@@ -1,6 +1,6 @@
 import * as passport from 'passport';
 import * as passportLocal from 'passport-local';
-import * as models from '../models/index';
+import { models } from '../models/index';
 import * as jwt from 'jsonwebtoken';
 
 const LocalStrategy = passportLocal.Strategy;
