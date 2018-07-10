@@ -5,7 +5,7 @@ const util = new Util();
 export default class User {
   // get all users
   getUsers = (req, res) => {
-    models.User.findAll({order: 'id'})
+    models.User.findAll({order: [['id', 'ASC']]})
       .then(users => res.json(users));
   }
   // add or register new user

@@ -43,12 +43,12 @@
     "passport-local": "^1.0.0",
     "passport-local-sequelize": "^0.8.0",
     "path": "^0.12.7",
-    "pg": "^4.2.0",
+    "pg": "^7.4.3",
     "pg-hstore": "^2.3.1",
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.2.1",
-    "sequelize": "^2.0.0-rc8",
-    "sequelize-cli": "^3.2.0",
+    "sequelize": "^4.38.0",
+    "sequelize-cli": "^4.0.0",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

@@ -1,9 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as SequelizeStatic from 'sequelize';
-import {config} from '../config/config';
-import {UserInstance, UserAttributes} from './interfaces/user-interface';
-import {Sequelize} from 'sequelize';
+import { config } from '../config/config';
+import { UserInstance, UserAttributes } from './interfaces/user-interface';
+import { Sequelize } from 'sequelize';
 
 export interface SequelizeModels {
   User: SequelizeStatic.Model<UserInstance, UserAttributes>;
@@ -23,7 +23,7 @@ class Database {
     this._models = ({} as any);
 
     fs.readdirSync(__dirname).filter((file: string) => {
-      return (file !== this._basename) && (file !== 'interfaces');
+      return (file !== this._basename) && (file !== 'interfaces') && (file !== 'index.js.map') && (file !== 'user.js.map');
     }).forEach((file: string) => {
       let model = this._sequelize.import(path.join(__dirname, file));
       this._models[(model as any).name] = model;
