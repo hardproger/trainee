@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { UserService } from './services/user.service';
 
@@ -8,13 +9,16 @@ import { UserService } from './services/user.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,
+              private router: Router) {}
   ngOnInit() {
-    // this.userService.logout().subscribe(
-    //   () => {},
-    //   () => {
-    //     localStorage.removeItem('token');
-    //   }
-    // );
+    console.log('onInit');
+    this.userService.checkLogin().subscribe(
+      () => {},
+      () => {
+        localStorage.removeItem('token');
+        this.router.navigate(['/']);
+      }
+    );
   }
 }

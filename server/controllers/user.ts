@@ -77,4 +77,10 @@ export default class User {
     req.logout();
     util.handleResponse(res, 200, 'success', 'You have successfully logged off');
   }
+  checkLogin = (req, res) => {
+    if (req.isAuthenticated()) {
+      util.handleResponse(res, 200, 'success', 'The user is authenticated!');
+  } else {
+    util.handleResponse(res, 403, 'error', 'The user is not authenticated!');
+  }
 }

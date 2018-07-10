@@ -27,4 +27,7 @@ export class UserService {
   logout(): Observable<any> {
     return this.http.get('/api/logout');
   }
+  checkLogin(): Observable<any> {
+    return this.http.get('/api/isauthenticated');
+  }
 }
