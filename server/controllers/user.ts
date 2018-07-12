@@ -15,7 +15,7 @@ export default class User {
         username: req.body.username,
         role: req.user && req.user.role === 'admin' ? req.body.role : 'user',
         password: req.body.password,
-        imgUrl: 'default.png'
+        imgUrl: 'default.jpg'
       })
       .then(regUser => util.handleResponse(res, 200, 'success', 'You have successfully registered!', regUser))
       .catch(() => util.handleResponse(res, 409, 'error', 'The username has already exists!'));
@@ -37,7 +37,7 @@ export default class User {
       where: {
         id: req.params.id
       }
-    }).then(user => util.handleResponse(res, 200, 'success', 'User was found', user))
+    }).then(user => res.json(user))
       .catch(() => util.handleResponse(res, 404, 'error', 'User is not found!'));
   }
   // update user
@@ -57,7 +57,7 @@ export default class User {
             imgUrl: req.body.imgUrl || user.imgUrl
           })
             .then(upUser => util.handleResponse(res, 200, 'success', 'Successfully changed', upUser))
-            .catch(err => util.handleResponse(res, 401, 'error', 'The username has already exists!'));
+            .catch(() => util.handleResponse(res, 401, 'error', 'The username has already exists!'));
         })
         .catch(err => util.handleResponse(res, 400, 'error', err));
     } else {

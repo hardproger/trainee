@@ -15,7 +15,6 @@ export class AppComponent implements OnInit {
               private router: Router,
               private auth: AuthService) {}
   ngOnInit() {
-    console.log('onInit');
     this.userService.checkLogin().subscribe(
       () => {},
       () => {

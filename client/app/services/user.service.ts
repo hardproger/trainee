@@ -18,6 +18,9 @@ export class UserService {
   editUser(user: User): Observable<any> {
     return this.http.put(`api/user/${user.id}`, user, {responseType: 'text'});
   }
+  getUser(id: number): Observable<User> {
+    return this.http.get<User>(`/api/user/${id}`);
+  }
   login(cred): Observable<any> {
     return this.http.post('/api/login', cred);
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import {ToastyService, ToastyConfig} from 'ng2-toasty';
+import { ToastyService, ToastyConfig } from 'ng2-toasty';
 import { FileUploader } from 'ng2-file-upload';
 
 import { User } from '../models/user';

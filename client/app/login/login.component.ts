@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.auth.login(this.loginForm.value).subscribe(
       () => {
+        this.router.navigate(['/home/list']);
         this.toastyService.success(this.setOptions('Success', 'You have successfully loggin in!'));
       },
       error => {

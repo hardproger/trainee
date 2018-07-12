@@ -39,13 +39,13 @@
                 </a>
                 <div class="dropdown-menu p-0 shadow" aria-labelledby="dropdownMenuButton">
                   <a class="dropdown-item px-2" href="#">Edit Profile</a>
-                  <a class="dropdown-item px-2" href="#">Sign Out</a>
+                  <a class="dropdown-item px-2" href="#" (click)="auth.logout()">Sign Out</a>
                 </div>
               </div>
             </li>
             <li class="nav-item ml-2">
               <div class="wrap-pic">
-                <img src="/assets/defaultMan.jpg" class="user-img">
+                <img src="/assets/userImg/default.jpg" class="user-img">
               </div>
             </li>
           </ul>
@@ -117,100 +117,13 @@
             </ul>
           </div>
         </div>
-        <div class="col-12 col-lg-9 pt-2">
-          <h5 class="highlights text-uppercase d-none d-lg-block m-0">Highlights of day</h5>
-          <div class="row">
-            <div class="col-6 col-md-4 col-lg-3 mt-2 pr-0">
-              <a href="/home" class="user">
-                <div class="inside-desc">
-                  <span>User</span>
-                  <span class="d-inline-block">18 years</span>
-                  <span class="d-inline-block right">
-                    <i class="fa fa-comment"></i>
-                    Chat
-                  </span>
-                </div>
-                <div class="desc">
-                  <span class="mb-2">
-                    Search Friends
-                    <i class="fa fa-circle right mt-2"></i>
-                  </span>
-                  <span>
-                    Los Angeles
-                    <i class="fa fa-camera right mt-2"></i>
-                  </span>
-                </div>
-              </a>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3 mt-2 pr-0">
-              <a href="/home" class="user">
-                <div class="inside-desc">
-                  <span>User</span>
-                  <span class="d-inline-block">18 years</span>
-                  <span class="d-inline-block right">
-                    <i class="fa fa-comment"></i>
-                    Chat
-                  </span>
-                </div>
-                <div class="desc">
-                  <span class="mb-2">
-                    Search Friends
-                    <i class="fa fa-circle right mt-2"></i>
-                  </span>
-                  <span>
-                    Los Angeles
-                    <i class="fa fa-camera right mt-2"></i>
-                  </span>
-                </div>
-              </a>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3 mt-2 pr-0">
-              <a href="/home" class="user">
-                <div class="inside-desc">
-                  <span>User</span>
-                  <span class="d-inline-block">18 years</span>
-                  <span class="d-inline-block right">
-                    <i class="fa fa-comment"></i>
-                    Chat
-                  </span>
-                </div>
-                <div class="desc">
-                  <span class="mb-2">
-                    Search Friends
-                    <i class="fa fa-circle right mt-2"></i>
-                  </span>
-                  <span>
-                    Los Angeles
-                    <i class="fa fa-camera right mt-2"></i>
-                  </span>
-                </div>
-              </a>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3 mt-2 pr-0">
-              <a href="/home" class="user">
-                <div class="inside-desc">
-                  <span>User</span>
-                  <span class="d-inline-block">18 years</span>
-                  <span class="d-inline-block right">
-                    <i class="fa fa-comment"></i>
-                    Chat
-                  </span>
-                </div>
-                <div class="desc">
-                  <span class="mb-2">
-                    Search Friends
-                    <i class="fa fa-circle right mt-2"></i>
-                  </span>
-                  <span>
-                    Los Angeles
-                    <i class="fa fa-camera right mt-2"></i>
-                  </span>
-                </div>
-              </a>
-            </div>
-          </div>
+        <div class="col-12 col-lg-9">
+          <!--<app-list *ngIf="router.url === '/home'"></app-list>-->
+          <!--<app-profile *ngIf="router.url === '/profile/'"></app-profile>-->
+          <router-outlet></router-outlet>
         </div>
       </div>
     </div>
   </div>
+  <ng2-toasty></ng2-toasty>
 </div>
