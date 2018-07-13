@@ -14,10 +14,11 @@ import { AuthService } from '../services/auth.services';
 export class ProfileComponent implements OnInit {
   id: number;
   foundedUser: User;
+  isLoading: boolean;
   constructor(private route: ActivatedRoute,
-              private userService: UserService,
-              private auth: AuthService) {}
+              private userService: UserService) {}
   ngOnInit() {
+    this.isLoading = true;
     this.route.params.subscribe(params => {
       this.id = params['id'];
     });
@@ -26,9 +27,8 @@ export class ProfileComponent implements OnInit {
   getUser(id) {
     this.userService.getUser(id).subscribe(
       data => {
-        console.log(data);
         this.foundedUser = data;
-        console.log(this.foundedUser);
+        this.isLoading = false;
       },
           err => console.log(err)
     );

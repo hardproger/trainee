@@ -65,6 +65,7 @@ export class RegisterComponent implements OnInit {
       }
   }
   checkValid1() {
+    console.log(this.sex)
     if (this.sex.valid && this.looking.valid && this.between.valid && this.living.valid) {
       this.regStep = 2;
     } else {

@@ -1,0 +1,61 @@
+.card {
+  color: #717f8f;
+}
+
+.card-header {
+  background-color: #319dd4;
+  text-align: center;
+  padding: .5rem 0;
+  border-bottom: none;
+}
+
+.card-header span {
+  font-size: .85rem;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.btn-img {
+  cursor: pointer;
+  color: #8d99a5 !important;
+  border: 2px solid #8d99a5;
+  border-radius: 4px;
+  padding: .375rem .75rem .4375rem;
+}
+
+.card-body input[type="checkbox"] {
+  float: right;
+}
+
+.card-body label {
+  display: block;
+  margin-bottom: 0;
+  text-transform: uppercase;
+  font-size: .85rem;
+}
+
+.card-body select, input[type="text"], textarea {
+  background-color: #fff;
+  color: #444c56;
+  border-radius: 3px;
+  border: 2px solid #ccc;
+  padding: .5rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  outline: none;
+}
+
+.card-body .col-6:nth-last-child(-n+2)  select, textarea {
+  margin-bottom: 0;
+}
+
+.card-body textarea {
+  height: 100px;
+}
+
+.inputs .col-12:nth-child(2n+1) {
+  background-color: #e8ebed;
+}
+
+

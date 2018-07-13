@@ -11,5 +11,9 @@ import { AuthService } from '../services/auth.services';
 
 export class HomeComponent {
   constructor(private router: Router,
-              private  auth: AuthService) {}
+              private  auth: AuthService) {
+    if (router.url === '/home') {
+      router.navigate(['/home/list']);
+    }
+  }
 }

@@ -1,0 +1,181 @@
+<div id="edit" *ngIf="!isLoading">
+  <div class="row">
+    <div class="col-md-6 col-12 px-2">
+      <div class="card mb-3">
+        <div class="card-header"><span>Fotos</span>
+        </div>
+        <div class="card-body pb-3">
+          <div class="row text-center">
+            <div class="col-6 p-0"><a class="btn-img">Cambiar foto de perfil</a></div>
+            <div class="col-6 p-0"><a class="btn-img">Editar mi álbum de fotos</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-3">
+        <div class="card-header"><span>INFORMACIÓN PERSONAL</span>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              <label for="region">Region</label>
+              <select name="region" id="region" [(ngModel)]="user.region">
+                <option value=""></option>
+                <option *ngFor="let number of [1, 2, 3, 4]" [value]="number" [selected]="user.region === number">{{number}} Region</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="comuna">Comuna</label>
+              <select name="comuna" id="comuna" [(ngModel)]="user.comuna">
+                <option value=""></option>
+                <option [value]="comuna" *ngFor="let comuna of comunas" [selected]="user.comuna === comuna">{{comuna}}</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="find">QUÉ BUSCAS</label>
+              <select name="find" id="find" [(ngModel)]="user.looking">
+                <option value=""></option>
+                <option [value]="look" *ngFor="let look of lookings" [selected]="user.looking === look">{{look}}</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="title">titulo perfil:</label>
+              <input type="text" name="title" id="title">
+            </div>
+            <div class="col-12">
+              <label for="desc">BREVE DESCRIPCIÓN</label>
+              <textarea name="desc" id="desc" cols="30" rows="10" style="resize: none;"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-3">
+        <div class="card-header"><span>INFORMACIÓN SOCIAL</span>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              <label for="status">ESTADO CIVIL</label>
+              <select name="status" id="status">
+                <option value=""></option>
+                <option value="soltero">Soltero</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="child">HIJOS</label>
+              <select name="child" id="child" [(ngModel)]="user.kids">
+                <option value=""></option>
+                <option [value]="kids" *ngFor="let kids of kidss" [selected]="user.kids === kids">{{kids}}</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="education">EDUCACIÓN</label>
+              <select name="education" id="education" [(ngModel)]="user.education">
+                <option value=""></option>
+                <option [value]="edu" *ngFor="let edu of educations" [selected]="user.education === edu">{{edu}}</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="job">TRABAJO</label>
+              <select name="job" id="job">
+                <option value=""></option>
+                <option value="administrativo">Administrativo</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="religion">RELIGIÓN</label>
+              <select name="religion" id="religion">
+                <option value=""></option>
+                <option value="cristiano">Cristiano</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="smoke">FUMADOR</label>
+              <select name="smoke" id="smoke">
+                <option value=""></option>
+                <option value="no">No</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-12 px-2">
+      <div class="card mb-3">
+        <div class="card-header"><span>Apariencia</span></div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              <label for="height">ESTATURA</label>
+              <select name="height" id="height">
+                <option value=""></option>
+                <option value="175">175</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="weight">PESO</label>
+              <select name="weight" id="weight">
+                <option value=""></option>
+                <option value="70">70</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="body">CONTEXTURA</label>
+              <select name="body" id="body">
+                <option value=""></option>
+                <option value="delgado">Delgado</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="hair">CABELLO</label>
+              <select name="hair" id="hair">
+                <option value=""></option>
+                <option value="negro">Negro</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="eyes">OJOS</label>
+              <select name="eyes" id="eyes">
+                <option value=""></option>
+                <option value="Cafe Claro">Cafe Claro</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="tatoo">TATUAJES</label>
+              <select name="tatoo" id="tatoo">
+                <option value=""></option>
+                <option value="none">None</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="piercing">PIERCINGS</label>
+              <select name="piercing" id="piercing">
+                <option value=""></option>
+                <option value="none">None</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-3">
+        <div class="card-header"><span>Intereses</span></div>
+        <div class="card-body pb-1">
+          <div class="row inputs">
+            <div class="col-12"><span>LOS ANIMALES</span><input type="checkbox"></div>
+            <div class="col-12"><span>IR A EVENTOS CULTURALES</span><input type="checkbox"></div>
+            <div class="col-12"><span>IR A CONCIERTOS</span><input type="checkbox"></div>
+            <div class="col-12"><span>LA COMIDA SANA</span><input type="checkbox"></div>
+            <div class="col-12"><span>HACER DEPORTES</span><input type="checkbox"></div>
+            <div class="col-12"><span>VIAJAR</span><input type="checkbox"></div>
+            <div class="col-12"><span>SALIR BAILAR</span><input type="checkbox"></div>
+            <div class="col-12"><span>IR AL CINE</span><input type="checkbox"></div>
+            <div class="col-12"><span>LA MUSICA</span><input type="checkbox"></div>
+            <div class="col-12"><span>SALIR A CENAR</span><input type="checkbox"></div>
+          </div>
+        </div>
+      </div>
+      <div class="submit text-center">
+        <button class="w-100 btn btn-success py-1" (click)="updateUser(user)">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

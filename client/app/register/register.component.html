@@ -21,9 +21,9 @@
               <label for="search">I am looking for</label>
               <select name="search" id="search" formControlName="looking">
                 <option value=""></option>
-                <option value="husband">Husband</option>
-                <option value="boyfriend">Boyfriend</option>
-                <option value="friend">Friend</option>
+                <option value="pareya">Pareja</option>
+                <option value="amigos">Amigos</option>
+                <option value="chat">Chat</option>
               </select>
             </div>
             <div class="col-lg-2 col-md-4 col-12 mt-3 mt-lg-2">
@@ -101,9 +101,9 @@
             <div class="col-6 pl-2">
               <label for="kids">Hijos</label>
               <select name="kids" id="kids" formControlName="kids">
-                <option value="0">None</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
+                <option value="none">None</option>
+                <option value="one">One</option>
+                <option value="two">Two</option>
                 <option value="3 and more">Three and more</option>
               </select>
             </div>
@@ -112,17 +112,16 @@
             <div class="col-6 pr-2">
               <label for="region">Región</label>
               <select name="region" id="region" formControlName="region">
-                <option value="1">1 Region</option>
-                <option value="2">2 Region</option>
-                <option value="3">3 Region</option>
+                <option value=""></option>
+                <option *ngFor="let number of [1, 2, 3, 4]" [value]="number">{{number}} Region</option>
               </select>
             </div>
             <div class="col-6 pl-2">
               <label for="comuna">Comuna</label>
               <select name="comuna" id="comuna" formControlName="comuna">
-                <option value="1">1 Comuna</option>
-                <option value="2">2 Comuna</option>
-                <option value="3">3 Comuna</option>
+                <option value="las condes">Las Condes</option>
+                <option value="caldera">Caldera</option>
+                <option value="huaro">Huaro</option>
               </select>
             </div>
           </div>

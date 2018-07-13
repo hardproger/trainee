@@ -22,6 +22,42 @@ export default function (sequelize: Sequelize, dataTypes: DataTypes):
       imgUrl: {
         type: dataTypes.STRING,
         allowNull: false
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      sex: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      looking: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      between: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      living: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      education: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      kids: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      region: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+      },
+      comuna: {
+        type: DataTypes.STRING,
+        allowNull: true
       }
     },
     {

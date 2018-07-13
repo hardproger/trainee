@@ -1,4 +1,4 @@
-<div class="row pl-2">
+<div class="row pl-2" *ngIf="!isLoading">
   <div id="profile" class="p-3">
     <div class="row">
       <div class="col-lg-6 p-3">
@@ -12,7 +12,8 @@
         </div>
         <div>
           <p>
-            Hola soy {{foundedUser.username}}, vivo en Caldera, no tengo hijos y busco Amigos
+            Hola soy {{foundedUser.username}}, vivo en <span style="text-transform: capitalize;">{{foundedUser.comuna}}</span>,
+            <span *ngIf="foundedUser.kids === 'no'">no</span> tengo hijos y busco <span class="text-capitalize">{{foundedUser.looking}}</span>
           </p>
         </div>
         <div>
@@ -28,13 +29,13 @@
                 </td>
                 <td>
                   <span>Hijos: </span>
-                  <span>No</span>
+                  <span>{{foundedUser.kids}}</span>
                 </td>
               </tr>
               <tr>
                 <td>
                   <span>Educación: </span>
-                  <span>Basica</span>
+                  <span>{{foundedUser.education}}</span>
                 </td>
                 <td>
                   <span>Trabajo:</span>

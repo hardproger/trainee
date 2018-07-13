@@ -16,6 +16,7 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ListComponent } from './list/list.component';
 import { ProfileComponent } from './profile/profile.component';
+import { EditComponent } from './edit/edit.component';
 
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.services';
@@ -36,7 +37,8 @@ export function tokenGetter() {
     FileSelectDirective,
     HomeComponent,
     ListComponent,
-    ProfileComponent
+    ProfileComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

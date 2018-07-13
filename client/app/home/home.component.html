@@ -38,14 +38,15 @@
                   <i class="fa fa-gear"></i>
                 </a>
                 <div class="dropdown-menu p-0 shadow" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item px-2" href="#">Edit Profile</a>
+                  <a class="dropdown-item px-2" [routerLink]="['/home/profile', auth.currentUser.id]">My Profile</a>
+                  <a class="dropdown-item px-2" [routerLink]="'/home/edit'">Edit Profile</a>
                   <a class="dropdown-item px-2" href="#" (click)="auth.logout()">Sign Out</a>
                 </div>
               </div>
             </li>
             <li class="nav-item ml-2">
               <div class="wrap-pic">
-                <img src="/assets/userImg/default.jpg" class="user-img">
+                <img [src]="auth.currentUser.imgUrl" class="user-img">
               </div>
             </li>
           </ul>
@@ -118,8 +119,6 @@
           </div>
         </div>
         <div class="col-12 col-lg-9">
-          <!--<app-list *ngIf="router.url === '/home'"></app-list>-->
-          <!--<app-profile *ngIf="router.url === '/profile/'"></app-profile>-->
           <router-outlet></router-outlet>
         </div>
       </div>
