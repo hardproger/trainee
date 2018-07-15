@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
@@ -9,9 +9,9 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./list.component.css']
 })
 
-@Injectable()
 export class ListComponent implements OnInit {
   users: User[] = [];
+  p:number = 1;
   constructor(private userService: UserService) {}
   ngOnInit() {
     this.getUsers();

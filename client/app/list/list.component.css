@@ -42,3 +42,15 @@
 .inside-desc span {
   color: #fff;
 }
+
+.pagination {
+  display: inline-block;
+}
+
+.controls a {
+  padding: .8rem 1rem;
+  color: #fff;
+  background-color: #319dd4;
+  border-radius: 50%;
+  cursor: pointer;
+}

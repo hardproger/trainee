@@ -1,7 +1,7 @@
 <div id="list" class="pt-2">
   <h5 class="highlights text-uppercase d-none d-lg-block m-0">Highlights of day</h5>
   <div class="row">
-    <div *ngFor="let user of users" class="col-6 col-md-4 col-lg-3 mt-2 pr-0">
+    <div *ngFor="let user of users | paginate: { itemsPerPage: 12, currentPage: p}" class="col-6 col-md-4 col-lg-3 mt-2 pr-0">
       <a [routerLink]="['/home/profile', user.id]" class="user" [ngStyle]="setUserImage(user)">
         <div class="inside-desc">
           <span>{{user.username}}</span>
@@ -23,5 +23,19 @@
         </div>
       </a>
     </div>
+  </div>
+  <div class="controls text-center my-4" *ngIf="users.length > 12">
+    <pagination-template #pT="paginationApi"
+                         (pageChange)="p = $event">
+
+            <div class="pagination" [class.disabled]="pT.isFirstPage()">
+                <a *ngIf="!pT.isFirstPage()" (click)="pT.previous()"><i class="fa fa-chevron-left"></i></a>
+            </div>
+
+            <div class="pagination" [class.disabled]="pT.isLastPage()">
+                <a *ngIf="!pT.isLastPage()" (click)="pT.next()"><i class="fa fa-chevron-right"></i></a>
+            </div>
+
+    </pagination-template> 
   </div>
 </div>

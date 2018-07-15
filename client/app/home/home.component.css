@@ -1,3 +1,8 @@
+#home {
+  height: 100%;
+  background-color: #e4e7e9;
+}
+
 nav {
   background-color: #319dd4;
   padding: 0;
@@ -41,7 +46,6 @@ a.nav-link.active {
 
 .content {
   background-color: #e4e7e9;
-  height: 886px;
 }
 
 .menu {

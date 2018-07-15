@@ -7,5 +7,5 @@ import { AuthService } from '../services/auth.services';
   styleUrls: ['./start.component.css']
 })
 export class StartComponent {
-  constructor(private auth: AuthService) {}
+	constructor(private auth: AuthService) {}
 }
