@@ -5,18 +5,20 @@ import {StartComponent} from './start/start.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditComponent } from './edit/edit.component';
+import { PhotoComponent } from './photo/photo.component';
 
 import { AuthGuardLogin } from './services/login-guard';
 import {ListComponent} from './list/list.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuardLogin]},
-  { path: '', component: StartComponent },
-  { path: 'home', component: HomeComponent,
+  { path: '', component: StartComponent},
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuardLogin],
     children: [
       {path: 'list', component: ListComponent},
-      {path: 'profile/:id', component: ProfileComponent},
-      {path: 'edit', component: EditComponent}
+      {path: 'profile/id/:id', component: ProfileComponent},
+      {path: 'edit/id/:id', component: EditComponent},
+      {path: 'photo/id/:id', component: PhotoComponent}
     ]}
 ];
 

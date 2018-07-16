@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastyService, ToastyConfig } from 'ng2-toasty';
-import { FileUploader } from 'ng2-file-upload';
 
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
@@ -16,9 +15,6 @@ export class AdminComponent implements OnInit {
   user: User = new User();
   users: User[] = [];
   roles: Array<string> = ['admin', 'moderator', 'user'];
-
-  public uploader: FileUploader = new FileUploader({url: 'http://localhost:3000/upload'});
-
   addUserForm: FormGroup;
   username = new FormControl('', Validators.required);
   role = new FormControl('', Validators.required);
@@ -29,9 +25,6 @@ export class AdminComponent implements OnInit {
               private toastyService: ToastyService,
               private toastyConfig: ToastyConfig) {
     this.toastyConfig.theme = 'bootstrap';
-    this.uploader.onCompleteItem = (item: any, res: any, status: any, headers: any) => {
-      console.log(res);
-    };
   }
   ngOnInit() {
     this.getUsers();

@@ -29,9 +29,14 @@ ul {
 a {
   color: #fff;
   text-decoration: none !important;
+  cursor: pointer;
 }
 
 img {
   max-width: 100%;
   height: auto;
+}
+
+option  {
+  text-transform: capitalize;
 }

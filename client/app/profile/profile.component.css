@@ -51,3 +51,10 @@
 .user-data td {
   border: 2px solid #F0F0F0;
 }
+
+.edit-btn {
+  color: #fff !important;
+  padding: .5rem;
+  background-color: #FFA500;
+  border-radius: 4px;
+}

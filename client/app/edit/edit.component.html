@@ -6,7 +6,7 @@
         </div>
         <div class="card-body pb-3">
           <div class="row text-center">
-            <div class="col-6 p-0"><a class="btn-img">Cambiar foto de perfil</a></div>
+            <div class="col-6 p-0"><a class="btn-img" [routerLink]="['/home/photo/id', foundedUser.id]">Cambiar foto de perfil</a></div>
             <div class="col-6 p-0"><a class="btn-img">Editar mi álbum de fotos</a></div>
           </div>
         </div>
@@ -18,23 +18,23 @@
           <div class="row">
             <div class="col-6">
               <label for="region">Region</label>
-              <select name="region" id="region" [(ngModel)]="user.region">
+              <select name="region" id="region" [(ngModel)]="foundedUser.region">
                 <option value=""></option>
-                <option *ngFor="let number of [1, 2, 3, 4]" [value]="number" [selected]="user.region === number">{{number}} Region</option>
+                <option *ngFor="let number of [1, 2, 3, 4]" [value]="number" [selected]="foundedUser.region === number">{{number}} Region</option>
               </select>
             </div>
             <div class="col-6">
               <label for="comuna">Comuna</label>
-              <select name="comuna" id="comuna" [(ngModel)]="user.comuna">
+              <select name="comuna" id="comuna" [(ngModel)]="foundedUser.comuna">
                 <option value=""></option>
-                <option [value]="comuna" *ngFor="let comuna of comunas" [selected]="user.comuna === comuna">{{comuna}}</option>
+                <option [value]="comuna" *ngFor="let comuna of option.comunas" [selected]="foundedUser.comuna === comuna">{{comuna}}</option>
               </select>
             </div>
             <div class="col-12">
               <label for="find">QUÉ BUSCAS</label>
-              <select name="find" id="find" [(ngModel)]="user.looking">
+              <select name="find" id="find" [(ngModel)]="foundedUser.looking">
                 <option value=""></option>
-                <option [value]="look" *ngFor="let look of lookings" [selected]="user.looking === look">{{look}}</option>
+                <option [value]="look" *ngFor="let look of option.lookings" [selected]="foundedUser.looking === look">{{look}}</option>
               </select>
             </div>
             <div class="col-12">
@@ -62,16 +62,16 @@
             </div>
             <div class="col-6">
               <label for="child">HIJOS</label>
-              <select name="child" id="child" [(ngModel)]="user.kids">
+              <select name="child" id="child" [(ngModel)]="foundedUser.kids">
                 <option value=""></option>
-                <option [value]="kids" *ngFor="let kids of kidss" [selected]="user.kids === kids">{{kids}}</option>
+                <option [value]="kids" *ngFor="let kids of option.kids" [selected]="foundedUser.kids === kids">{{kids}}</option>
               </select>
             </div>
             <div class="col-6">
               <label for="education">EDUCACIÓN</label>
-              <select name="education" id="education" [(ngModel)]="user.education">
+              <select name="education" id="education" [(ngModel)]="foundedUser.education">
                 <option value=""></option>
-                <option [value]="edu" *ngFor="let edu of educations" [selected]="user.education === edu">{{edu}}</option>
+                <option [value]="edu" *ngFor="let edu of option.educations" [selected]="foundedUser.education === edu">{{edu}}</option>
               </select>
             </div>
             <div class="col-6">
@@ -174,7 +174,7 @@
         </div>
       </div>
       <div class="submit text-center">
-        <button class="w-100 btn btn-success py-1" (click)="updateUser(user)">Guardar</button>
+        <button class="w-100 btn btn-success py-1" (click)="updateUser(foundedUser)">Guardar</button>
       </div>
     </div>
   </div>

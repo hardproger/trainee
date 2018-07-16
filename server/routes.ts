@@ -5,7 +5,7 @@ import Util from './utils/utilities';
 export default function setRoutes(app) {
   const userCtrl = new User();
   const util = new Util();
-  app.get('/api/users', userCtrl.getUsers);
+  app.get('/api/users', util.checkAuth, userCtrl.getUsers);
   app.post('/api/user', userCtrl.insert);
   app.delete('/api/user/:id', util.checkAuth, util.adminGuard, userCtrl.delete);
   app.get('/api/user/:id', util.checkAuth, userCtrl.find);

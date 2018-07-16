@@ -11,18 +11,23 @@ import { UserService } from '../services/user.service';
 
 export class ListComponent implements OnInit {
   users: User[] = [];
-  p:number = 1;
+  p: number = 1;
   constructor(private userService: UserService) {}
   ngOnInit() {
     this.getUsers();
   }
   getUsers() {
     this.userService.getUsers().subscribe(
-      data => this.users = data,
-      err => console.log(err)
+      data => {
+        this.users = data;
+      },
+          err => console.log(err)
     );
   }
   setUserImage(user) {
     return {'background-image': 'url(/assets/userImg/' + user.imgUrl + ')'};
+  }
+  setUserAge(user) {
+    return new Date().getFullYear() - new Date(user.birthday).getFullYear();
   }
 }

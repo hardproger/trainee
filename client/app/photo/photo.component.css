@@ -1,0 +1,35 @@
+.card-header {
+  background: #9ea8b3;
+}
+
+.card-header span {
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.card-body p {
+  color: #333;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.card-body i {
+  color: #9ea8b3;
+  font-size: 1.2rem;
+}
+
+.footer i, label {
+  color: #fff;
+}
+
+.footer label, button {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 400;
+  width: 100%;
+  background-color: #29b865;
+  border-radius: 4px;
+  border: none;
+}

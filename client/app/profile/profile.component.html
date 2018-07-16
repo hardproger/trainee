@@ -8,7 +8,7 @@
       </div>
       <div class="user-info col-lg-6 p-3">
         <div>
-          <h3 class="user-name">{{foundedUser.username}}, 18 years</h3>
+          <h3 class="user-name">{{foundedUser.username}}, {{setUserAge(foundedUser)}} years</h3>
         </div>
         <div>
           <p>
@@ -84,6 +84,9 @@
               </tr>
             </tbody>
           </table>
+        </div>
+        <div class="text-right" *ngIf="(auth.currentUser.role === 'admin' || auth.currentUser.role === 'moderator') && !(foundedUser.id === auth.currentUser.id)">
+          <a [routerLink]="['/home/edit/id', foundedUser.id]" class="edit-btn">Edit profile <i class="fa fa-pencil"></i></a>
         </div>
       </div>
     </div>

@@ -58,6 +58,10 @@ export default function (sequelize: Sequelize, dataTypes: DataTypes):
       comuna: {
         type: DataTypes.STRING,
         allowNull: true
+      },
+      birthday: {
+        type: DataTypes.DATEONLY,
+        allowNull: true
       }
     },
     {

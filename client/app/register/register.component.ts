@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import {ToastyService, ToastyConfig} from 'ng2-toasty';
 
 import { UserService } from '../services/user.service';
+import { OptionConfig } from '../services/option-config';
 
 @Component({
   selector: 'app-register',
@@ -21,13 +22,17 @@ export class RegisterComponent implements OnInit {
   email = new FormControl('', Validators.required);
   password = new FormControl('', Validators.required);
   education = new FormControl('', Validators.required);
+  day = new FormControl('', Validators.required);
+  month = new FormControl('', Validators.required);
+  year = new FormControl('', Validators.required);
   kids = new FormControl('', Validators.required);
   region = new FormControl('', Validators.required);
   comuna = new FormControl('', Validators.required);
   constructor(private userService: UserService,
               private formBuilder: FormBuilder,
               private toastyService: ToastyService,
-              private toastyConfig: ToastyConfig) {
+              private toastyConfig: ToastyConfig,
+              public option: OptionConfig) {
     this.toastyConfig.theme = 'bootstrap';
     this.regStep = 1;
   }
@@ -44,11 +49,15 @@ export class RegisterComponent implements OnInit {
       kids: this.kids,
       region: this.region,
       comuna: this.comuna,
+      day: this.day,
+      month: this.month,
+      year: this.year
     });
   }
   register() {
       if (this.username.valid && this.email.valid && this.password.valid &&
-          this.education.valid && this.kids.valid && this.region.valid && this.comuna.valid) {
+          this.education.valid && this.kids.valid && this.region.valid && this.comuna.valid &&
+          this.day.valid && this.month.valid && this.year.valid) {
         this.userService.register(this.registerForm.value).subscribe(
           res => {
             console.log(res);

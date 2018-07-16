@@ -21,9 +21,7 @@
               <label for="search">I am looking for</label>
               <select name="search" id="search" formControlName="looking">
                 <option value=""></option>
-                <option value="pareya">Pareja</option>
-                <option value="amigos">Amigos</option>
-                <option value="chat">Chat</option>
+                <option *ngFor="let look of option.lookings" [value]="look">{{look}}</option>
               </select>
             </div>
             <div class="col-lg-2 col-md-4 col-12 mt-3 mt-lg-2">
@@ -72,18 +70,21 @@
               <div class="row">
                 <label class="ml-3 w-100">Nacimiento</label>
                 <div class="col-4 pr-0">
-                  <select name="day" id="day">
+                  <select name="day" id="day" formControlName="day">
                     <option value=""></option>
+                    <option *ngFor="let day of option.days" [value]="day">{{day}}</option>
                   </select>
                 </div>
                 <div class="col-4 px-1">
-                  <select name="month" id="month">
+                  <select name="month" id="month" formControlName="month">
                     <option value=""></option>
+                    <option *ngFor="let month of option.monthsNumbers" [value]="month-1">{{option.monthsNames[month-1]}}</option>
                   </select>
                 </div>
                 <div class="col-4 pl-0">
-                  <select name="year" id="year">
+                  <select name="year" id="year" formControlName="year">
                     <option value=""></option>
+                    <option *ngFor="let year of option.years" [value]="year">{{year}}</option>
                   </select>
                 </div>
               </div>
@@ -93,18 +94,15 @@
             <div class="col-6 pr-2">
               <label for="edu" >Nivel Educación</label>
               <select name="edu" id="edu" formControlName="education">
-                <option value="higher">Higher</option>
-                <option value="general">General</option>
-                <option value="basic">Basic</option>
+                <option value=""></option>
+                <option *ngFor="let edu of option.educations" [value]="edu">{{edu}}</option>
               </select>
             </div>
             <div class="col-6 pl-2">
               <label for="kids">Hijos</label>
               <select name="kids" id="kids" formControlName="kids">
-                <option value="none">None</option>
-                <option value="one">One</option>
-                <option value="two">Two</option>
-                <option value="3 and more">Three and more</option>
+                <option value=""></option>
+                <option *ngFor="let kid of option.kids" [value]="kid">{{kid}}</option>
               </select>
             </div>
           </div>
@@ -119,9 +117,8 @@
             <div class="col-6 pl-2">
               <label for="comuna">Comuna</label>
               <select name="comuna" id="comuna" formControlName="comuna">
-                <option value="las condes">Las Condes</option>
-                <option value="caldera">Caldera</option>
-                <option value="huaro">Huaro</option>
+                <option value=""></option>
+                <option *ngFor="let comuna of option.comunas" [value]="comuna">{{comuna}}</option>>
               </select>
             </div>
           </div>

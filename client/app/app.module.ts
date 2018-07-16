@@ -18,10 +18,14 @@ import { HomeComponent } from './home/home.component';
 import { ListComponent } from './list/list.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditComponent } from './edit/edit.component';
+import { PhotoComponent } from './photo/photo.component';
 
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.services';
 import { AuthGuardLogin } from './services/login-guard';
+import { OptionConfig } from './services/option-config';
+
+import { ThumbnailDirective } from './thumbnail.directive';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -39,7 +43,9 @@ export function tokenGetter() {
     HomeComponent,
     ListComponent,
     ProfileComponent,
-    EditComponent
+    EditComponent,
+    PhotoComponent,
+    ThumbnailDirective
   ],
   imports: [
     BrowserModule,
@@ -56,7 +62,8 @@ export function tokenGetter() {
   providers: [
     UserService,
     AuthService,
-    AuthGuardLogin
+    AuthGuardLogin,
+    OptionConfig
   ],
   bootstrap: [AppComponent]
 })

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastyService, ToastyConfig } from 'ng2-toasty';
+import { ActivatedRoute } from '@angular/router';
 
 import { User } from '../models/user';
 import { AuthService } from '../services/auth.services';
 import { UserService } from '../services/user.service';
+import { OptionConfig } from '../services/option-config';
 
 @Component({
   selector: 'app-edit',
@@ -12,26 +14,28 @@ import { UserService } from '../services/user.service';
 })
 
 export class EditComponent implements OnInit {
-  user: User;
+  foundedUser: User;
+  id: number;
   isLoading: boolean;
-  educations: Array<string> = ['basic', 'general', 'higher'];
-  kidss: Array<string> = ['no', 'one', 'two', '3 and more'];
-  comunas: Array<string> = ['las condes', 'caldera', 'huaro'];
-  lookings: Array<string> = ['friends', 'dating', 'chat'];
   constructor(private auth: AuthService,
               private userService: UserService,
               private toastyService: ToastyService,
-              private toastyConfig: ToastyConfig) {
+              private toastyConfig: ToastyConfig,
+              private route: ActivatedRoute,
+              public option: OptionConfig) {
     this.toastyConfig.theme = 'bootstrap';
   }
   ngOnInit() {
     this.isLoading = true;
-    this.getUser(this.auth.currentUser.id);
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+    });
+    this.getUser(this.id);
   }
   getUser(id) {
     this.userService.getUser(id).subscribe(
       data => {
-        this.user = data;
+        this.foundedUser = data;
         this.isLoading = false;
       },
           err => console.log(err)
@@ -40,7 +44,7 @@ export class EditComponent implements OnInit {
   updateUser(user: User) {
     this.userService.editUser(user).subscribe(
       () => {
-        this.getUser(this.user.id);
+        this.getUser(this.foundedUser.id);
         this.toastyService.success(this.setOptions('success', 'The information was successfully updated!'));
       },
           err => {

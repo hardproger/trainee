@@ -1,9 +1,10 @@
 export default class Util {
-  handleResponse = (res, code, status, msg, user = null) => {
+  handleResponse = (res, code, status, msg, user = null, err = null) => {
     res.status(code).json({
       status: status,
       message: msg,
-      user: user
+      user: user,
+      error: err
     });
   }
   checkAuth = (req, res, next) => {

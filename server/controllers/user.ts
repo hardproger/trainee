@@ -10,12 +10,16 @@ export default class User {
   }
   // add or register new user
   insert = (req, res) => {
-    req.body.imgUrl = req.body.sex === 'male' ? 'defaultMan.jpg' : 'defaultWoman.jpg';
-    req.body.role = req.user && req.user.role === 'admin' ? req.body.role : 'user';
+    req.body.imgUrl = req.body.sex === 'female' ? 'defaultWoman.jpg' : 'defaultMan.jpg';
+    req.body.role = req.body.role && req.user && req.user.role === 'admin' ? req.body.role : 'user';
+    req.body.birthday = req.body.year && req.body.day && req.body.month ? new Date(req.body.year, req.body.month, req.body.day) : null;
+    // Promise.resolve().then(() => models.User.create(req.body))
+    //   .then(regUser => util.handleResponse(res, 200, 'success', 'You have successfully registered!', regUser))
+    //   .catch((err) => res.status(400).send(err));
     models.User
       .create(req.body)
       .then(regUser => util.handleResponse(res, 200, 'success', 'You have successfully registered!', regUser))
-      .catch(() => util.handleResponse(res, 409, 'error', 'The username has already exists!'));
+      .catch((err) => util.handleResponse(res, 409, 'error', 'The username already exists!', null, err.errors[0].message));
   }
   // delete user
   delete = (req, res) => {
@@ -39,8 +43,6 @@ export default class User {
   }
   // update user
   update = (req, res) => {
-    req.body.imgUrl = req.user.imgUrl;
-    req.body.role = req.user && req.user.role === 'admin' ? req.body.role : req.user.role;
     models.User.find({
       where: {id: req.params.id}
     })
@@ -50,7 +52,7 @@ export default class User {
         }
         user.updateAttributes(req.body)
           .then(upUser => util.handleResponse(res, 200, 'success', 'Successfully changed', upUser))
-          .catch(() => util.handleResponse(res, 401, 'error', 'The username has already exists!'));
+          .catch(err => util.handleResponse(res, 409, 'error', 'The username has already exists!', null, err.errors[0].message));
       })
       .catch(err => util.handleResponse(res, 400, 'error', err));
   }

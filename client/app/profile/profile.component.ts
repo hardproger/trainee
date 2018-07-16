@@ -16,7 +16,8 @@ export class ProfileComponent implements OnInit {
   foundedUser: User;
   isLoading: boolean;
   constructor(private route: ActivatedRoute,
-              private userService: UserService) {}
+              private userService: UserService,
+              private auth: AuthService) {}
   ngOnInit() {
     this.isLoading = true;
     this.route.params.subscribe(params => {
@@ -32,5 +33,8 @@ export class ProfileComponent implements OnInit {
       },
           err => console.log(err)
     );
+  }
+  setUserAge(user) {
+    return new Date().getFullYear() - new Date(user.birthday).getFullYear();
   }
 }
