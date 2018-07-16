@@ -75,10 +75,10 @@ a.nav-link.active {
   display: block;
   height: 20px;
   margin-top: -20px;
-  padding-left: 9rem;
+  margin-left: 9rem;
 }
 
-.menu-list li {
+.menu-list li, .menu-list a {
   font-size: .725rem;
   font-weight: 400;
   display: inline-block;
@@ -113,6 +113,10 @@ a.nav-link.active {
   font-size: 1rem;
   font-weight: 400;
   position: relative;
+}
+
+.search a {
+  color: #fff !important;
 }
 
 .search i {

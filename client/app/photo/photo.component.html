@@ -13,11 +13,10 @@
     </div>
     <div class="footer text-center mt-4">
       <label for="photo" class="py-1"><i class="fa fa-search"></i>Buscar Foto</label>
-      <input type="file" id="photo" name="photo" hidden ng2FileSelect [uploader]="uploader">
     </div>
   </div>
 </div>
-<div class="card" *ngIf="uploader.getNotUploadedItems().length">
+<div class="card" *ngIf="uploader.getNotUploadedItems().length" >
   <div class="card-header text-center py-2">
     <span>Edita tu foto de perfil</span>
   </div>
@@ -25,10 +24,19 @@
     <div *ngFor="let item of uploader.queue; let first = first;">
       <img thumbnail [image]="item?._file"/>
     </div>
+    <div class="controls mt-4 text-center">
+      <label class="mx-1" for="photo"><i class="fa fa-search"></i></label>
+      <button class="mx-1"><i class="fa fa-rotate-left"></i></button>
+      <button class="mx-1"><i class="fa fa-search-minus"></i></button>
+      <button class="mx-1"><i class="fa fa-search-plus"></i></button>
+      <button class="mx-1"><i class="fa fa-arrows-alt"></i></button>
+      <button class="mx-1"><i class="fa fa-rotate-right"></i></button>
+    </div>
     <div class="footer mt-4">
-      <button type="button" name="image" (click)="uploader.uploadAll()">
+      <button type="button" name="image" class="py-1" (click)="uploader.uploadAll()">
         <i class="fa fa-upload"></i>  Subir foto
       </button>
     </div>
   </div>
 </div>
+<input type="file" id="photo" name="photo" hidden ng2FileSelect [uploader]="uploader">

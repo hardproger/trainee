@@ -9,16 +9,16 @@
         <div class="collapse navbar-collapse mt-3 ml-5 my-right" id="navbarSupportedContent">
           <ul class="navbar-nav">
             <li class="nav-item mr-2">
-              <a class="nav-link" href="#" [ngClass]="{active: router.url === '/home/list'}">Initiation</a>
+              <a class="nav-link" href="/home" [ngClass]="{active: router.url === '/home/list'}">Initiation</a>
             </li>
             <li class="nav-item mr-2">
-              <a class="nav-link" href="#">Events</a>
+              <a class="nav-link" href="/home">Events</a>
             </li>
             <li class="nav-item mr-2">
-              <a class="nav-link" href="#">Blogs</a>
+              <a class="nav-link" href="/home">Blogs</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link special-item" href="#">Payment Center</a>
+              <a class="nav-link special-item" href="/home">Payment Center</a>
             </li>
           </ul>
         </div>
@@ -26,10 +26,10 @@
         <div class="collapse navbar-collapse pr-5">
           <ul class="navbar-nav" style="flex: 1; justify-content: flex-end">
             <li class="nav-item mt-2">
-              <a class="nav-link px-0" href="#">0 VIP Days</a>
+              <a class="nav-link px-0" href="/home">0 VIP Days</a>
             </li>
             <li class="nav-item mt-2">
-              <a class="nav-link px-1" href="#">&#8226;</a>
+              <a class="nav-link px-1">&#8226;</a>
             </li>
             <li class="nav-item mt-2">
               <div class="dropdown">
@@ -87,10 +87,12 @@
             </div>
           </div>
           <div class="menu search mt-3">
-            <span>
-              Meet single
-              <i class="fa fa-search"></i>
-            </span>
+            <a href="">
+              <span>
+                Meet single
+                <i class="fa fa-search"></i>
+              </span>
+            </a>
           </div>
           <div class="menu mt-3">
             <div class="row">
@@ -110,10 +112,10 @@
           </div>
           <div class="menu mt-3 menu-list">
             <ul class="p-0 m-0">
-              <li>Testimonials</li>
-              <li>About</li>
-              <li>Blog</li>
-              <li>Privacy</li>
+              <li><a href="/home">Testimonials</a></li>
+              <li><a href="/home">About</a></li>
+              <li><a href="/home">Blog</a></li>
+              <li><a href="/home">Privacy</a></li>
               <li>Datingchile &copy; 2018</li>
             </ul>
           </div>
