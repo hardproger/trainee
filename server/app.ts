@@ -9,13 +9,16 @@ import * as session from 'express-session';
 import * as models from './models';
 import * as multer from 'multer';
 
+import Util from './utils/utilities';
+const util = new Util();
+
 const passportConfig = require('./utils/passport');
 
 import setRoutes from './routes';
 
 const app = express();
 app.set('port', process.env.PORT || 3000);
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../client')));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'POST, PUT, OPTIONS, DELETE, GET');
@@ -38,7 +41,7 @@ const multerConfig = {
     }
   }),
 
-  fileFilter: function(req, file, next){
+  fileFilter: function(req, file, next) {
     if (!file) {
       next();
     }
@@ -54,8 +57,8 @@ const multerConfig = {
   }
 };
 
-app.post('/upload', multer(multerConfig).single('file'), function(req,res){
-  res.send('Photo was successfully uploaded!');
+app.post('/upload', multer(multerConfig).single('file'), function(req, res) {
+  res.send(req.file.filename);
 });
 
 // Middleware

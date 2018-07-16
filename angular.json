@@ -13,14 +13,15 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/trainee",
+            "outputPath": "build/client",
             "index": "client/index.html",
             "main": "client/main.ts",
             "polyfills": "client/polyfills.ts",
             "tsConfig": "client/tsconfig.app.json",
             "assets": [
               "client/favicon.ico",
-              "client/assets"
+              "client/assets",
+              "client/assets/userImg"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
