@@ -1,5 +1,6 @@
 import { models } from '../models/index';
 import Util from '../utils/utilities';
+import * as fs from 'fs';
 const util = new Util;
 
 export default class Photo {
@@ -38,12 +39,19 @@ export default class Photo {
       .catch(err => res.send(err));
   }
   deletePhoto = (req, res) => {
-    models.Photo.destroy({
+    models.Photo.find({
       where: {
         id: req.params.id
       }
     })
-      .then(() => res.send('success'))
+      .then(photo => {
+        photo.destroy(photo)
+        .then(() => {
+          fs.unlink(`client/assets/userImg/${photo.url}`, () => console.log('removed'));
+          res.send('success');
+        })
+        .catch(err => res.send(err));
+      })
       .catch(err => res.send(err));
   }
   findPhoto = (req, res) => {
