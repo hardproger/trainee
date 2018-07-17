@@ -1,0 +1,35 @@
+<div id="gallery">
+  <div class="return mb-5" *ngIf="auth.currentUser.id === id">
+    <a [routerLink]="['/home/edit/id', id]"><i class="fa fa-chevron-left"></i>    Edita tu Album</a>
+  </div>
+  <div class="top-label">
+    <h3>Fotos en Album ({{photos.length}})</h3>
+  </div>
+  <div class="upload-input" *ngIf="auth.currentUser.id === id">
+    <span for="photo">Seleccionar Foto</span>
+    <input type="file" id="photo" name="photo" ng2FileSelect [uploader]="uploader" multiple>
+  </div>
+  <div class="upload-btn text-right" (click)="uploader.uploadAll()" *ngIf="auth.currentUser.id === id">
+    <button class="btn btn-success">Guardar cambios</button>
+  </div>
+  <div class="album mt-4">
+    <div class="row">
+      <div class="col-md-3 col-12" *ngFor="let item of uploader.queue; let first = first;">
+        <img thumbnail [image]="item?._file"/>
+        <div class="top" *ngIf="auth.currentUser.id === id">
+          <a (click)="item.remove()">
+            <i class="fa fa-trash"></i>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 col-12" *ngFor="let photo of photos">
+        <img [src]="'/assets/userImg/' + photo.url">
+        <div class="top" *ngIf="auth.currentUser.id === id">
+          <a (click)="deletePhoto(photo)">
+            <i class="fa fa-trash"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

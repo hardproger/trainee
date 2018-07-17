@@ -18,14 +18,12 @@ export class PhotoComponent {
   constructor(private route: ActivatedRoute,
               private userService: UserService) {
     this.route.params.subscribe(params => {
-      this.id = params['id'];
+      this.id = +params['id'];
     });
     this.getUser(this.id);
     this.uploader.onCompleteItem = (item: any, res: any, status: any, headers: any) => {
       this.user.id = this.id;
       this.user.imgUrl = res;
-      console.log(this.user.id);
-      console.log(this.user.imgUrl);
       this.userService.editUser(this.user).subscribe(
         data => console.log(data),
         err => console.log(err)

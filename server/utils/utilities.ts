@@ -1,3 +1,5 @@
+import { models } from '../models/index';
+
 export default class Util {
   handleResponse = (res, code, status, msg, user = null, err = null) => {
     res.status(code).json({
@@ -20,5 +22,20 @@ export default class Util {
     } else {
       this.handleResponse(res, 403, 'error', 'You don\'t have permission!');
     }
+  }
+  checkUser = (req, res, next) => {
+    models.Photo.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(user => {
+        if (user.userId === req.user.id) {
+          next();
+        } else {
+          this.handleResponse(res, 403, 'error', 'You don\'t have permission!');
+        }
+      })
+      .catch(err => res.send(err));
   }
 }

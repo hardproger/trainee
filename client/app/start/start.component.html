@@ -29,6 +29,35 @@
       <app-register></app-register>
     </div>
   </div>
-</div>
+  <div class="myCarousel py-4">
+    <div class="container">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="3000">
+        <div class="carousel-inner text-center">
+          <div class="carousel-item active">
+            <div class="row">
+              <div class="col-lg-1 col-md-2 col-4 d-lg-block" *ngFor="let img of images" [ngClass]="{'d-none': images.indexOf(img) > 2, 'd-md-block': images.indexOf(img) < 6}">
+                <img [src]="img" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item ">
+            <div class="row">
+              <div class="col-lg-1 col-md-2 col-4 d-lg-block" *ngFor="let img of images" [ngClass]="{'d-none': images.indexOf(img) > 2, 'd-md-block': images.indexOf(img) < 6}">
+                <img [src]="img" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row">
+              <div class="col-lg-1 col-md-2 col-4 d-lg-block" *ngFor="let img of images" [ngClass]="{'d-none': images.indexOf(img) > 2, 'd-md-block': images.indexOf(img) < 6}">
+                <img [src]="img" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
   <ng2-toasty></ng2-toasty>
 </div>

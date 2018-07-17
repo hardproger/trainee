@@ -5,6 +5,9 @@
         <div class="profile-photo px-4">
           <img [src]="'/assets/userImg/' + foundedUser.imgUrl" alt="Profile photo">
         </div>
+        <div class="pt-5 px-4">
+          <a [routerLink]="['/home/gallery/id', foundedUser.id]" class="edit-btn">Gallery <i class="fa fa-photo"></i></a>
+        </div>
       </div>
       <div class="user-info col-lg-6 p-3">
         <div>

@@ -24,43 +24,43 @@ export default function (sequelize: Sequelize, dataTypes: DataTypes):
         allowNull: false
       },
       email: {
-        type: DataTypes.STRING,
+        type: dataTypes.STRING,
         allowNull: true
       },
       sex: {
-        type: DataTypes.STRING,
+        type: dataTypes.STRING,
         allowNull: true
       },
       looking: {
-        type: DataTypes.STRING,
+        type: dataTypes.STRING,
         allowNull: true
       },
       between: {
-        type: DataTypes.STRING,
+        type: dataTypes.STRING,
         allowNull: true
       },
       living: {
-        type: DataTypes.STRING,
+        type: dataTypes.STRING,
         allowNull: true
       },
       education: {
-        type: DataTypes.STRING,
+        type: dataTypes.STRING,
         allowNull: true
       },
       kids: {
-        type: DataTypes.STRING,
+        type: dataTypes.STRING,
         allowNull: true
       },
       region: {
-        type: DataTypes.INTEGER,
+        type: dataTypes.INTEGER,
         allowNull: true
       },
       comuna: {
-        type: DataTypes.STRING,
+        type: dataTypes.STRING,
         allowNull: true
       },
       birthday: {
-        type: DataTypes.DATEONLY,
+        type: dataTypes.DATEONLY,
         allowNull: true
       }
     },
@@ -70,22 +70,33 @@ export default function (sequelize: Sequelize, dataTypes: DataTypes):
 
     userSchema.comparePassword = (password, hash, callback) => {
       bcrypt.compare(password, hash, (err, isMatch) => {
-        if (err) return callback(err, null);
-        else callback(null, isMatch);
-      })
-    }
+        if (err) {
+         return callback(err, null);
+      } else {
+          callback(null, isMatch);
+        }
+      });
+    };
 
     userSchema.beforeCreate(user => {
       const SALT_WORK_FACTOR = 10;
       bcrypt.genSalt(SALT_WORK_FACTOR)
       .then(salt => {
          bcrypt.hash(user.password, salt, (err, hash) => {
-          if (err) console.log(err);
+          if (err) {
+            console.log(err);
+          }
           user.password = hash;
           user.save();
         });
       })
       .catch(err => console.log(err));
     });
+
+    userSchema.associate = (models) => {
+      userSchema.hasMany(models.Photo, {
+        foreignKey: 'userId'
+      });
+    };
   return userSchema;
 }

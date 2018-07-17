@@ -9,6 +9,7 @@ import { PhotoComponent } from './photo/photo.component';
 
 import { AuthGuardLogin } from './services/login-guard';
 import {ListComponent} from './list/list.component';
+import {GalleryComponent} from './gallery/gallery.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuardLogin]},
@@ -18,7 +19,8 @@ const routes: Routes = [
       {path: 'list', component: ListComponent},
       {path: 'profile/id/:id', component: ProfileComponent},
       {path: 'edit/id/:id', component: EditComponent},
-      {path: 'photo/id/:id', component: PhotoComponent}
+      {path: 'photo/id/:id', component: PhotoComponent},
+      {path: 'gallery/id/:id', component: GalleryComponent}
     ]}
 ];
 

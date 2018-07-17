@@ -33,7 +33,31 @@ header {
   background-size: cover;
 }
 
-.carousel {
+.myCarousel {
   background-color: #319dd4;
 }
+
+.myCarousel img {
+  display: inline-block;
+}
+
+.carousel-inner .carousel-item-left.active {
+  transform: translateX(-50%);
+}
+.carousel-inner .carousel-item-right.active {
+  transform: translateX(50%);
+}
+
+.carousel-inner .carousel-item-next {
+  transform: translateX(50%)
+}
+.carousel-inner .carousel-item-prev {
+  transform: translateX(-50%)
+}
+
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left{
+  transform: translateX(0);
+}
+
 

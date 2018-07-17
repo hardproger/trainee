@@ -19,9 +19,11 @@ import { ListComponent } from './list/list.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditComponent } from './edit/edit.component';
 import { PhotoComponent } from './photo/photo.component';
+import { GalleryComponent } from './gallery/gallery.component';
 
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.services';
+import { PhotoService } from './services/photo.service';
 import { AuthGuardLogin } from './services/login-guard';
 import { OptionConfig } from './services/option-config';
 
@@ -45,7 +47,8 @@ export function tokenGetter() {
     ProfileComponent,
     EditComponent,
     PhotoComponent,
-    ThumbnailDirective
+    ThumbnailDirective,
+    GalleryComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,8 @@ export function tokenGetter() {
     UserService,
     AuthService,
     AuthGuardLogin,
-    OptionConfig
+    OptionConfig,
+    PhotoService
   ],
   bootstrap: [AppComponent]
 })

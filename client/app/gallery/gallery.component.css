@@ -1,0 +1,31 @@
+#gallery h3, .return a {
+  color: #5a6672;
+}
+
+.return a {
+  font-size: 1rem;
+}
+
+.upload-input {
+  color: #000;
+}
+
+.upload-input span {
+  display: block;
+  font-size: 1rem;
+}
+
+.album img {
+  position: relative;
+}
+
+.album i {
+  font-size: 1.2rem;
+}
+
+.album .top {
+  position: absolute;
+  right: 1.5rem;
+  top: .4rem;
+}
+
