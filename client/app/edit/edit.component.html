@@ -1,5 +1,5 @@
 <div id="edit" *ngIf="!isLoading">
-  <div class="row">
+  <div class="row" *ngIf="auth.currentUser.id === foundedUser.id || auth.currentUser.role === 'admin' || auth.currentUser.role === 'moderator' ? true : router.navigate(['/home/list'])">
     <div class="col-md-6 col-12 px-2">
       <div class="card mb-3">
         <div class="card-header"><span>Fotos</span>
@@ -55,9 +55,9 @@
           <div class="row">
             <div class="col-6">
               <label for="status">ESTADO CIVIL</label>
-              <select name="status" id="status">
+              <select name="status" id="status" [(ngModel)]="foundedUser.status">
                 <option value=""></option>
-                <option value="soltero">Soltero</option>
+                <option *ngFor="let civil of option.civils" [value]="civil"  [selected]="foundedUser.status === civil">{{civil}}</option>
               </select>
             </div>
             <div class="col-6">
@@ -76,23 +76,23 @@
             </div>
             <div class="col-6">
               <label for="job">TRABAJO</label>
-              <select name="job" id="job">
+              <select name="job" id="job" [(ngModel)] = "foundedUser.job">
                 <option value=""></option>
-                <option value="administrativo">Administrativo</option>
+                <option *ngFor="let job of option.jobs" [value]="job"  [selected]="foundedUser.job === job">{{job}}</option>
               </select>
             </div>
             <div class="col-6">
               <label for="religion">RELIGIÓN</label>
-              <select name="religion" id="religion">
+              <select name="religion" id="religion" [(ngModel)] = "foundedUser.religion">
                 <option value=""></option>
-                <option value="cristiano">Cristiano</option>
+                <option *ngFor="let religion of option.religions" [value]="religion"  [selected]="foundedUser.religion === religion">{{religion}}</option>
               </select>
             </div>
             <div class="col-6">
               <label for="smoke">FUMADOR</label>
-              <select name="smoke" id="smoke">
+              <select name="smoke" id="smoke" [(ngModel)] = "foundedUser.smoker">
                 <option value=""></option>
-                <option value="no">No</option>
+                <option *ngFor="let choose of option.choosings" [value]="choose"  [selected]="foundedUser.smoker === choose">{{choose}}</option>
               </select>
             </div>
           </div>
@@ -106,51 +106,51 @@
           <div class="row">
             <div class="col-6">
               <label for="height">ESTATURA</label>
-              <select name="height" id="height">
+              <select name="height" id="height" [(ngModel)] = "foundedUser.height">
                 <option value=""></option>
-                <option value="175">175</option>
+                <option *ngFor="let height of option.heights" [value]="height"  [selected]="foundedUser.height === height">{{height}}</option>
               </select>
             </div>
             <div class="col-6">
               <label for="weight">PESO</label>
-              <select name="weight" id="weight">
+              <select name="weight" id="weight" [(ngModel)] = "foundedUser.weight">
                 <option value=""></option>
-                <option value="70">70</option>
+                <option *ngFor="let weight of option.weights" [value]="weight"  [selected]="foundedUser.weight === weight">{{weight}}</option>
               </select>
             </div>
             <div class="col-12">
               <label for="body">CONTEXTURA</label>
-              <select name="body" id="body">
+              <select name="body" id="body" [(ngModel)] = "foundedUser.body">
                 <option value=""></option>
-                <option value="delgado">Delgado</option>
+                <option *ngFor="let body of option.bodys" [value]="body"  [selected]="foundedUser.body === body">{{body}}</option>
               </select>
             </div>
             <div class="col-6">
               <label for="hair">CABELLO</label>
-              <select name="hair" id="hair">
+              <select name="hair" id="hair" [(ngModel)] = "foundedUser.hair">
                 <option value=""></option>
-                <option value="negro">Negro</option>
+                <option *ngFor="let hair of option.hairs" [value]="hair"  [selected]="foundedUser.hair === hair">{{hair}}</option>
               </select>
             </div>
             <div class="col-6">
               <label for="eyes">OJOS</label>
-              <select name="eyes" id="eyes">
+              <select name="eyes" id="eyes" [(ngModel)] = "foundedUser.eyes">
                 <option value=""></option>
-                <option value="Cafe Claro">Cafe Claro</option>
+                <option *ngFor="let eye of option.eyes" [value]="eye"  [selected]="foundedUser.eyes === eye">{{eye}}</option>
               </select>
             </div>
             <div class="col-6">
               <label for="tatoo">TATUAJES</label>
-              <select name="tatoo" id="tatoo">
+              <select name="tatoo" id="tatoo" [(ngModel)] = "foundedUser.tatoos">
                 <option value=""></option>
-                <option value="none">None</option>
+                <option *ngFor="let choose of option.choosings" [value]="choose"  [selected]="foundedUser.tatoos === choose">{{choose}}</option>
               </select>
             </div>
             <div class="col-6">
               <label for="piercing">PIERCINGS</label>
-              <select name="piercing" id="piercing">
+              <select name="piercing" id="piercing" [(ngModel)] = "foundedUser.piercing">
                 <option value=""></option>
-                <option value="none">None</option>
+                <option *ngFor="let choose of option.choosings" [value]="choose"  [selected]="foundedUser.piercing === choose">{{choose}}</option>
               </select>
             </div>
           </div>
@@ -160,16 +160,7 @@
         <div class="card-header"><span>Intereses</span></div>
         <div class="card-body pb-1">
           <div class="row inputs">
-            <div class="col-12"><span>LOS ANIMALES</span><input type="checkbox"></div>
-            <div class="col-12"><span>IR A EVENTOS CULTURALES</span><input type="checkbox"></div>
-            <div class="col-12"><span>IR A CONCIERTOS</span><input type="checkbox"></div>
-            <div class="col-12"><span>LA COMIDA SANA</span><input type="checkbox"></div>
-            <div class="col-12"><span>HACER DEPORTES</span><input type="checkbox"></div>
-            <div class="col-12"><span>VIAJAR</span><input type="checkbox"></div>
-            <div class="col-12"><span>SALIR BAILAR</span><input type="checkbox"></div>
-            <div class="col-12"><span>IR AL CINE</span><input type="checkbox"></div>
-            <div class="col-12"><span>LA MUSICA</span><input type="checkbox"></div>
-            <div class="col-12"><span>SALIR A CENAR</span><input type="checkbox"></div>
+            <div class="col-12" *ngFor="let interes of option.intereses; let i = index"><span>{{interes}}</span><input type="checkbox" [(ngModel)] = "foundedUser.intereses[i]"></div>
           </div>
         </div>
       </div>

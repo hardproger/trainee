@@ -21,6 +21,9 @@
         </div>
         <div>
           <h3>En qué coincidimos</h3>
+          <ul class="intereses-list p-0">
+            <li *ngFor="let interes of option.intereses; let i = index" [hidden]="!foundedUser.intereses[i]"><i class="fa fa-check text-success"></i><span style="text-transform: lowercase;"> {{interes}}</span></li>
+          </ul>
         </div>
         <div>
           <h3>Más acerca de {{foundedUser.username}}</h3>
@@ -28,7 +31,8 @@
             <tbody>
               <tr>
                 <td>
-                  <span>Estada Civil:</span>
+                  <span>Estada Civil: </span>
+                  <span>{{foundedUser.status}}</span>
                 </td>
                 <td>
                   <span>Hijos: </span>
@@ -41,48 +45,58 @@
                   <span>{{foundedUser.education}}</span>
                 </td>
                 <td>
-                  <span>Trabajo:</span>
+                  <span>Trabajo: </span>
+                  <span>{{foundedUser.job}}</span>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <span>Religión:</span>
+                  <span>Religión: </span>
+                  <span>{{foundedUser.religion}}</span>
                 </td>
                 <td>
                   <span>Signo: </span>
-                  <span>Piscis</span>
+                  <span>piscis</span>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <span>Estatura:</span>
+                  <span>Estatura: </span>
+                  <span>{{foundedUser.height}}</span>
                 </td>
                 <td>
-                  <span>Peso:</span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <span>Contextura:</span>
-                </td>
-                <td>
-                  <span>Cabello:</span>
+                  <span>Peso: </span>
+                  <span>{{foundedUser.weight}}</span>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <span>Ojos:</span>
+                  <span>Contextura: </span>
+                  <span>{{foundedUser.body}}</span>
                 </td>
                 <td>
-                  <span>Fumador:</span>
+                  <span>Cabello: </span>
+                  <span>{{foundedUser.hair}}</span>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <span>Tatuajes:</span>
+                  <span>Ojos: </span>
+                  <span>{{foundedUser.eyes}}</span>
                 </td>
                 <td>
-                  <span>Piercings:</span>
+                  <span>Fumador: </span>
+                  <span>{{foundedUser.smoker}}</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Tatuajes: </span>
+                  <span>{{foundedUser.tatoos}}</span>
+                </td>
+                <td>
+                  <span>Piercings: </span>
+                  <span>{{foundedUser.piercing}}</span>
                 </td>
               </tr>
             </tbody>

@@ -24,44 +24,77 @@ export default function (sequelize: Sequelize, dataTypes: DataTypes):
         allowNull: false
       },
       email: {
-        type: dataTypes.STRING,
-        allowNull: true
+        type: dataTypes.STRING
       },
       sex: {
-        type: dataTypes.STRING,
-        allowNull: true
+        type: dataTypes.STRING
       },
       looking: {
-        type: dataTypes.STRING,
-        allowNull: true
+        type: dataTypes.STRING
       },
       between: {
-        type: dataTypes.STRING,
-        allowNull: true
+        type: dataTypes.STRING
       },
       living: {
-        type: dataTypes.STRING,
-        allowNull: true
+        type: dataTypes.STRING
       },
       education: {
-        type: dataTypes.STRING,
-        allowNull: true
+        type: dataTypes.STRING
       },
       kids: {
-        type: dataTypes.STRING,
-        allowNull: true
+        type: dataTypes.STRING
       },
       region: {
-        type: dataTypes.INTEGER,
-        allowNull: true
+        type: dataTypes.INTEGER
       },
       comuna: {
-        type: dataTypes.STRING,
-        allowNull: true
+        type: dataTypes.STRING
       },
       birthday: {
-        type: dataTypes.DATEONLY,
-        allowNull: true
+        type: dataTypes.DATEONLY
+      },
+      title: {
+        type: dataTypes.STRING
+      },
+      description: {
+        type: dataTypes.STRING
+      },
+      status: {
+        type: dataTypes.STRING
+      },
+      job: {
+        type: dataTypes.STRING
+      },
+      religion: {
+        type: dataTypes.STRING
+      },
+      smoker: {
+        type: dataTypes.STRING
+      },
+      height: {
+        type: dataTypes.INTEGER
+      },
+      weight: {
+        type: dataTypes.INTEGER
+      },
+      body: {
+        type: dataTypes.STRING
+      },
+      hair: {
+        type: dataTypes.STRING
+      },
+      eyes: {
+        type: dataTypes.STRING
+      },
+      tatoos: {
+        type: dataTypes.STRING
+      },
+      piercing: {
+        type: dataTypes.STRING
+      },
+      intereses: {
+        type: dataTypes.ARRAY(dataTypes.BOOLEAN),
+        defaultValue: []
       }
     },
     {

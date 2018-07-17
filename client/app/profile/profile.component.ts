@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.services';
+import { OptionConfig } from '../services/option-config';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +18,8 @@ export class ProfileComponent implements OnInit {
   isLoading: boolean;
   constructor(private route: ActivatedRoute,
               private userService: UserService,
-              private auth: AuthService) {}
+              private auth: AuthService,
+              public option: OptionConfig) {}
   ngOnInit() {
     this.isLoading = true;
     this.route.params.subscribe(params => {

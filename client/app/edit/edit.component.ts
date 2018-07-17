@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastyService, ToastyConfig } from 'ng2-toasty';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router'
 
 import { User } from '../models/user';
 import { AuthService } from '../services/auth.services';
@@ -22,7 +23,8 @@ export class EditComponent implements OnInit {
               private toastyService: ToastyService,
               private toastyConfig: ToastyConfig,
               private route: ActivatedRoute,
-              public option: OptionConfig) {
+              public option: OptionConfig,
+              private router: Router) {
     this.toastyConfig.theme = 'bootstrap';
   }
   ngOnInit() {
