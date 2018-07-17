@@ -49,7 +49,7 @@ export class EditComponent implements OnInit {
       },
           err => {
         console.log(err);
-        this.toastyService.error(this.setOptions('error', 'Ooops... Something went wrong :('));
+        this.toastyService.error(this.setOptions('error', err));
       }
     );
   }

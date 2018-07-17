@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { ActivatedRoute } from '@angular/router';
+import {ToastyService, ToastyConfig} from 'ng2-toasty';
 
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
@@ -16,7 +17,10 @@ export class PhotoComponent {
   id: number;
   user: User;
   constructor(private route: ActivatedRoute,
-              private userService: UserService) {
+              private userService: UserService,
+              private toastyService: ToastyService,
+              private toastyConfig: ToastyConfig) {
+    this.toastyConfig.theme = 'bootstrap';
     this.route.params.subscribe(params => {
       this.id = +params['id'];
     });
@@ -24,10 +28,7 @@ export class PhotoComponent {
     this.uploader.onCompleteItem = (item: any, res: any, status: any, headers: any) => {
       this.user.id = this.id;
       this.user.imgUrl = res;
-      this.userService.editUser(this.user).subscribe(
-        data => console.log(data),
-        err => console.log(err)
-      );
+      this.updateUser(this.user);
     };
   }
   getUser(id) {
@@ -37,5 +38,20 @@ export class PhotoComponent {
       },
       err => console.log(err)
     );
+  }
+  updateUser(user: User) {
+    this.userService.editUser(user).subscribe(
+      () => this.toastyService.success(this.setOptions('Success', 'Photo was successfully updated!')),
+      err => this.toastyService.error(this.setOptions('Error', err))
+    )
+  }
+  setOptions(title, msg) {
+    return {
+      title: title,
+      msg: msg,
+      showClose: true,
+      timeout: 2500,
+      theme: 'bootstrap'
+    };
   }
 }

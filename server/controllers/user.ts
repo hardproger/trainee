@@ -51,7 +51,7 @@ export default class User {
           util.handleResponse(res, 403, 'error', 'You haven\'t permission for do this!');
         }
         user.updateAttributes(req.body)
-          .then(upUser => util.handleResponse(res, 200, 'success', 'Successfully changed', upUser))
+          .then(upUser => util.handleResponse(res, 200, 'success', 'The information was successfully changed!'))
           .catch(err => util.handleResponse(res, 409, 'error', 'The username has already exists!', null, err.errors[0].message));
       })
       .catch(err => util.handleResponse(res, 400, 'error', err));

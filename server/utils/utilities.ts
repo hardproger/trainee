@@ -36,6 +36,9 @@ export default class Util {
           this.handleResponse(res, 403, 'error', 'You don\'t have permission!');
         }
       })
-      .catch(err => res.send(err));
+      .catch(err => {
+        this.handleResponse(res, 500, 'error', 'Something went wrong :(');
+        console.log(err);
+      });
   }
 }
