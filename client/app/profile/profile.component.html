@@ -6,7 +6,7 @@
           <img [src]="'/assets/userImg/' + foundedUser.imgUrl" alt="Profile photo">
         </div>
         <div class="row px-4 mt-3">
-          <div class="col-12 col-lg-4 gallery-link" *ngFor="let photo of photos" [routerLink] = "['/home/gallery/id', foundedUser.id]">
+          <div class="col-6 col-lg-4 gallery-link" *ngFor="let photo of photos" [routerLink] = "['/home/gallery/id', foundedUser.id]">
             <img [src]="'/assets/userImg/' + photo.url">
           </div>
         </div>

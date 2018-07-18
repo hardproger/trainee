@@ -19,7 +19,7 @@ export default function setRoutes(app) {
   // photo endpoints
   app.get('/api/photos/:userId', util.checkAuth, photoCtrl.getPhotos);
   app.post('/api/photo', util.checkAuth, photoCtrl.addPhoto);
-  app.put('/api/photo/:id', util.checkAuth, util.checkUser, photoCtrl.updatePhoto);
-  app.delete('/api/photo/:id', util.checkAuth, util.checkUser, photoCtrl.deletePhoto);
+  app.put('/api/photo/:id', util.checkAuth, util.checkUserRole, photoCtrl.updatePhoto);
+  app.delete('/api/photo/:id', util.checkAuth, util.checkUserRole, photoCtrl.deletePhoto);
   app.get('/api/photo/:id', util.checkAuth, photoCtrl.findPhoto);
 }

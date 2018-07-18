@@ -23,7 +23,7 @@ export default class Util {
       this.handleResponse(res, 403, 'error', 'You don\'t have permission!');
     }
   }
-  checkUser = (req, res, next) => {
+  checkUserRole = (req, res, next) => {
     models.Photo.findOne({
       where: {
         id: req.params.id
