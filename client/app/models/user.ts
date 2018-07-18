@@ -13,4 +13,19 @@ export class User {
   kids?: string;
   region?: number;
   comuna?: string;
+  birthday?: any;
+  title?: string;
+  description?: string;
+  status?: string;
+  job?: string;
+  religion?: string;
+  smoker?: string;
+  height?: number;
+  weight?: number;
+  body?: string;
+  hair?: string;
+  eyes?: string;
+  tatoos?: string;
+  piercing?: string;
+  intereses?: any;
 }

@@ -5,10 +5,14 @@
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div class="row">
       <div class="col-md-4 col-12 pr-md-1">
-        <input formControlName="username" type="text" name="username" placeholder="Usuario" class="p-1 mb-sm-3 mb-3 mb-md-0" required>
+        <input formControlName="username" type="email" name="username" placeholder="Usuario" class="p-1 mb-sm-3 mb-3 mb-md-0" [ngClass]="setDangerEmail()">
+        <span *ngIf="username.touched && username.errors?.email">Email is not valid!</span>
+        <span *ngIf="username.touched && username.errors?.required">Email is required!</span>
       </div>
       <div class="col-md-4 col-12 px-lg-1 px-md-1">
-        <input formControlName="password" type="password" name="password" placeholder="Clave" class="p-1 mb-sm-3 mb-3 mb-md-0" required>
+        <input formControlName="password" type="password" name="password" placeholder="Clave" class="p-1 mb-sm-3 mb-3 mb-md-0" [ngClass]="setDangerPassword()">
+        <span *ngIf="password.touched && password.errors?.minlength">Password must be at least 6 characters!</span>
+        <span *ngIf="password.touched && password.errors?.required">Password is required!</span>
       </div>
       <div class="col-md-4 col-12 pl-md-1 mb-3 mb-3 mb-md-0">
         <button class="login-btn" type="submit" [disabled]="!loginForm.valid">deposit</button>

@@ -17,6 +17,7 @@ export class AdminComponent implements OnInit {
   roles: Array<string> = ['admin', 'moderator', 'user'];
   addUserForm: FormGroup;
   username = new FormControl('', Validators.required);
+  email = new FormControl('', Validators.required);
   role = new FormControl('', Validators.required);
   password = new FormControl('', Validators.required);
   constructor(private userService: UserService,
@@ -29,9 +30,10 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this.getUsers();
     this.addUserForm = this.formBuilder.group({
-      username: this.username,
+      email: this.email,
       role: this.role,
-      password: this.password
+      password: this.password,
+      username: this.username
     });
   }
   getUsers() {

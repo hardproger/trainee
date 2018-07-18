@@ -8,7 +8,6 @@ export default function (sequelize: Sequelize, dataTypes: DataTypes):
     const userSchema = sequelize.define<UserInstance, UserAttributes>('User', {
       username: {
         type: dataTypes.STRING,
-        allowNull: false,
         unique: true
       },
       role: {
@@ -24,7 +23,8 @@ export default function (sequelize: Sequelize, dataTypes: DataTypes):
         allowNull: false
       },
       email: {
-        type: dataTypes.STRING
+        type: dataTypes.STRING,
+        unique: true
       },
       sex: {
         type: dataTypes.STRING

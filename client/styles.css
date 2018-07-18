@@ -40,3 +40,8 @@ img {
 option  {
   text-transform: capitalize;
 }
+
+.error-validate {
+  border: 1px solid #a94442 !important;
+}
+

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import * as $ from 'jquery';
 
 import { AuthService } from '../services/auth.services';
 
@@ -15,5 +16,8 @@ export class HomeComponent {
     if (router.url === '/home') {
       router.navigate(['/home/list']);
     }
+  }
+  show() {
+    $('.hidden-conver').toggleClass('show');
   }
 }

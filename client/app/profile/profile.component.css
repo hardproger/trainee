@@ -63,3 +63,7 @@
   font-size: 1rem;
   color: #444c56;
 }
+
+.gallery-link {
+  outline: none;
+}

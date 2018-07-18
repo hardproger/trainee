@@ -59,7 +59,7 @@ export default class User {
   login = (req, res) => {
     const user = {
       id: req.user.id,
-      username: req.user.username,
+      email: req.user.email,
       role: req.user.role,
       token: req.user.token
     };

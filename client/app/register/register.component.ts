@@ -19,8 +19,8 @@ export class RegisterComponent implements OnInit {
   between = new FormControl('', Validators.required);
   living = new FormControl('', Validators.required);
   username = new FormControl('', Validators.required);
-  email = new FormControl('', Validators.required);
-  password = new FormControl('', Validators.required);
+  email = new FormControl('', [Validators.required, Validators.email]);
+  password = new FormControl('', [Validators.required, Validators.minLength(6)]);
   education = new FormControl('', Validators.required);
   day = new FormControl('', Validators.required);
   month = new FormControl('', Validators.required);
@@ -89,5 +89,11 @@ export class RegisterComponent implements OnInit {
       timeout: 2500,
       theme: 'bootstrap'
     };
+  }
+  setDangerEmail() {
+    return {'error-validate' : this.email.touched && this.email.errors.email };
+  }
+  setDangerPassword() {
+    return {'error-validate' : this.password.touched && this.password.errors.minlength };
   }
 }

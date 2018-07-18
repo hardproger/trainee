@@ -43,7 +43,7 @@ export class PhotoComponent {
     this.userService.editUser(user).subscribe(
       () => this.toastyService.success(this.setOptions('Success', 'Photo was successfully updated!')),
       err => this.toastyService.error(this.setOptions('Error', err))
-    )
+    );
   }
   setOptions(title, msg) {
     return {

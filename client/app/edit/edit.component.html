@@ -39,11 +39,11 @@
             </div>
             <div class="col-12">
               <label for="title">titulo perfil:</label>
-              <input type="text" name="title" id="title">
+              <input type="text" name="title" id="title" [(ngModel)]="foundedUser.title">
             </div>
             <div class="col-12">
               <label for="desc">BREVE DESCRIPCIÓN</label>
-              <textarea name="desc" id="desc" cols="30" rows="10" style="resize: none;"></textarea>
+              <textarea name="desc" id="desc" cols="30" rows="10" style="resize: none;" [(ngModel)]="foundedUser.description"></textarea>
             </div>
           </div>
         </div>

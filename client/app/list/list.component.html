@@ -1,7 +1,7 @@
 <div id="list" class="pt-2">
   <h5 class="highlights text-uppercase d-none d-lg-block m-0">Highlights of day</h5>
   <div class="row">
-    <div *ngFor="let user of users | paginate: { itemsPerPage: 12, currentPage: p}" class="col-6 col-md-4 col-lg-3 mt-2 pr-0">
+    <div *ngFor="let user of users | paginate: { itemsPerPage: 12, currentPage: p}" class="col-6 col-md-4 col-lg-3 mt-2">
       <a [routerLink]="['/home/profile/id', user.id]" class="user" [ngStyle]="setUserImage(user)">
         <div class="inside-desc">
           <span>{{user.username}}</span>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastyService, ToastyConfig } from 'ng2-toasty';
 
@@ -15,8 +15,8 @@ import { AuthService } from '../services/auth.services';
 
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  username = new FormControl('', Validators.required);
-  password = new FormControl('', Validators.required);
+  username = new FormControl('', [Validators.email, Validators.required]);
+  password = new FormControl('', [Validators.required, Validators.minLength(6)]);
   constructor(private formBuilder: FormBuilder,
             private router: Router,
             private userService: UserService,
@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
         this.toastyService.success(this.setOptions('Success', 'You have successfully loggin in!'));
       },
       error => {
+        console.log(error);
         this.toastyService.error(this.setOptions('Error', 'Username or password are invalid!'));
       }
     );
@@ -50,5 +51,11 @@ export class LoginComponent implements OnInit {
       timeout: 2500,
       theme: 'bootstrap'
     };
+  }
+  setDangerEmail() {
+    return {'error-validate' : this.username.touched && this.username.errors };
+  }
+  setDangerPassword() {
+    return {'error-validate' : this.password.touched && this.password.errors };
   }
 }

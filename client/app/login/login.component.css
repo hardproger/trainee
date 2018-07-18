@@ -15,12 +15,13 @@ a {
   font-size: 12px;
 }
 
-.login input[type="text"], input[type='password'] {
+.login input[type="email"], input[type='password'] {
   width: 100%;
   font-size: 14px;
   color: #2d3339;
   border-radius: 3px;
   border: 1px solid #d1d1d1;
+  background-color: #fff !important;
 }
 
 .login-btn {
@@ -40,4 +41,10 @@ a {
   border-radius: 3px;
   padding: 5px 0;
   font-size: 14px;
+}
+
+span {
+  color: #a94442;
+  font-weight: bold;
+  font-size: .8rem;
 }

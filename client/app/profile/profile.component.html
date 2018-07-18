@@ -5,8 +5,10 @@
         <div class="profile-photo px-4">
           <img [src]="'/assets/userImg/' + foundedUser.imgUrl" alt="Profile photo">
         </div>
-        <div class="pt-5 px-4">
-          <a [routerLink]="['/home/gallery/id', foundedUser.id]" class="edit-btn">Gallery <i class="fa fa-photo"></i></a>
+        <div class="row px-4 mt-3">
+          <div class="col-12 col-lg-4 gallery-link" *ngFor="let photo of photos" [routerLink] = "['/home/gallery/id', foundedUser.id]">
+            <img [src]="'/assets/userImg/' + photo.url">
+          </div>
         </div>
       </div>
       <div class="user-info col-lg-6 p-3">
@@ -24,6 +26,10 @@
           <ul class="intereses-list p-0">
             <li *ngFor="let interes of option.intereses; let i = index" [hidden]="!foundedUser.intereses[i]"><i class="fa fa-check text-success"></i><span style="text-transform: lowercase;"> {{interes}}</span></li>
           </ul>
+        </div>
+        <div>
+          <h3>{{foundedUser.title}}</h3>
+          <p>{{foundedUser.description}}</p>
         </div>
         <div>
           <h3>Más acerca de {{foundedUser.username}}</h3>
@@ -102,8 +108,13 @@
             </tbody>
           </table>
         </div>
-        <div class="text-right" *ngIf="(auth.currentUser.role === 'admin' || auth.currentUser.role === 'moderator') && !(foundedUser.id === auth.currentUser.id)">
-          <a [routerLink]="['/home/edit/id', foundedUser.id]" class="edit-btn">Edit profile <i class="fa fa-pencil"></i></a>
+        <div class="text-right">
+          <a [routerLink]="['/home/gallery/id', foundedUser.id]" class="edit-btn">Gallery <i class="fa fa-photo"></i></a>
+          <a [routerLink]="['/home/edit/id', foundedUser.id]" class="edit-btn ml-3"
+             *ngIf="(auth.currentUser.role === 'admin' || auth.currentUser.role === 'moderator') && !(foundedUser.id === auth.currentUser.id)">
+            Edit profile
+            <i class="fa fa-pencil"></i>
+          </a>
         </div>
       </div>
     </div>

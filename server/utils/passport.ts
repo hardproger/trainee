@@ -5,10 +5,10 @@ import * as jwt from 'jsonwebtoken';
 
 const LocalStrategy = passportLocal.Strategy;
 
-passport.use(new LocalStrategy((username, password, done) => {
+passport.use(new LocalStrategy((email, password, done) => {
   models.User
     .find({
-      where: { username: username }
+      where: { email: email }
     })
     .then((user) => {
       if (!user) {
