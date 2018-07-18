@@ -20,4 +20,7 @@ export class HomeComponent {
   show() {
     $('.hidden-conver').toggleClass('show');
   }
+  showSideBar() {
+    $('.hidden-sidebar').toggleClass('show-sidebar')
+  }
 }

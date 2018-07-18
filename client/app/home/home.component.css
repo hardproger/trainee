@@ -168,3 +168,64 @@ a.nav-link.active {
 .controls i, .card {
   cursor: pointer;
 }
+
+.mobile-icons a.active {
+  border-bottom: 4px solid #fff;
+}
+
+.mobile-icons a {
+  padding-bottom: .8rem;
+}
+
+.mobile-icons i {
+  font-size: 1.7rem;
+}
+
+.mobile-icons a {
+  color: #fff !important;
+}
+
+.hidden-sidebar {
+  position: fixed;
+  top: 0;
+  width: 86%;
+  left: -86%;
+  height: 100%;
+  background-color: #2d3339;
+  transition: all .5s;
+  z-index: 2;
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+}
+
+.show-sidebar {
+  left: 0;
+}
+
+.exit-btn {
+  font-size: 1rem;
+}
+
+.user-image-panel {
+  border-radius: 4px;
+}
+
+.panel-item:not(:last-child) {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid hsla(0,0%,100%,.1);
+  font-size: 1rem;
+}
+
+.panel-item .item {
+  padding-bottom: .8rem;
+  border-bottom: 1px solid hsla(0,0%,100%,.1);
+}
+
+.panel-item .item a {
+  color: #fff;
+}
+
+.panel-item .number {
+  background-color: #3f4750;
+}

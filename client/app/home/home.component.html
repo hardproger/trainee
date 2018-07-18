@@ -2,6 +2,35 @@
   <header>
     <nav class="navbar navbar-expand-lg">
       <div class="container">
+        <div class="mobile-icons d-lg-none d-block ml-3">
+          <div class="row text-left">
+            <div class="col-2">
+              <a (click)="showSideBar()">
+                <i class="fa fa-bars"></i>
+              </a>
+            </div>
+            <div class="col-2">
+              <a [ngClass]="{active: router.url === '/home/list'}" routerLink="/home/list">
+                <i class="fa fa-heart"></i>
+              </a>
+            </div>
+            <div class="col-2">
+              <a routerLink="/home/list">
+                <i class="fa fa-calendar"></i>
+              </a>
+            </div>
+            <div class="col-2">
+              <a routerLink="/home/list">
+                <i class="fa fa-newspaper-o"></i>
+              </a>
+            </div>
+            <div class="col-2">
+              <a routerLink="/home/list">
+                <i class="fa fa-credit-card"></i>
+              </a>
+            </div>
+          </div>
+        </div>
         <a class="navbar-brand" routerLink="/home/list">
           <img src="/assets/logo4.svg" height="40" width="170" class="d-lg-block d-none">
         </a>
@@ -137,6 +166,60 @@
         <img src="https://datingchile.cl/dating-profile-photos/20/1c/6f/201c6fbccd4503d57bd65fe83f10a9aa_small.jpg" class="user-pic mr-2">
         <span class="mr-1 username">javiera</span>
         <i class="fa fa-circle"></i>
+      </div>
+    </div>
+  </div>
+  <div class="hidden-sidebar p-3">
+    <div class="exit-btn text-right">
+      <a (click)="showSideBar()">Hide panel <i class="fa fa-sign-out"></i></a>
+    </div>
+    <div class="panel-body">
+      <div class="panel-item">
+        <div class="user-img text-center position-relative">
+          <img [src]="auth.currentUser.imgUrl" class="user-image-panel" width="70" height="50">
+        </div>
+      </div>
+      <div class="panel-item text-center">
+        <a class="d-block">0 VIP Days</a>
+        <div class="dropdown">
+          <a class="d-block" id="dropdownPanel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Configuration
+            <i class="fa fa-gear"></i>
+          </a>
+          <div class="dropdown-menu w-100 text-center" aria-labelledby="dropdownPanel">
+            <a class="dropdown-item px-2" [routerLink]="['/home/profile/id', auth.currentUser.id]">My Profile</a>
+            <a class="dropdown-item px-2" [routerLink]="['/home/edit/id', auth.currentUser.id]">Edit Profile</a>
+            <a class="dropdown-item px-2" (click)="auth.logout()">Sign Out</a>
+          </div>
+        </div>
+      </div>
+      <div class="panel-item px-3">
+        <div class="row">
+          <div class="item col-12">
+            <a href="/home">Recomended</a>
+            <span class="number">0</span>
+          </div>
+          <div class="item col-12">
+            <a (click)="show()">Conversations</a>
+            <span class="number">0</span>
+          </div>
+          <div class="item col-12">
+            <a href="/home">I like</a>
+            <span class="number">0</span>
+          </div>
+          <div class="item col-12">
+            <a href="/home">Les Gusto</a>
+            <span class="number">0</span>
+          </div>
+          <div class="item col-12">
+            <a href="/home">Mutual interest</a>
+            <span class="number">0</span>
+          </div>
+          <div class="item col-12">
+            <a href="/home">I visited</a>
+            <span class="number">0</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
