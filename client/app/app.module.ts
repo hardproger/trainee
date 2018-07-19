@@ -26,6 +26,7 @@ import { AuthService } from './services/auth.services';
 import { PhotoService } from './services/photo.service';
 import { AuthGuardLogin } from './services/login-guard';
 import { OptionConfig } from './services/option-config';
+import { ToastService } from './services/toasty.service';
 
 import { ThumbnailDirective } from './thumbnail.directive';
 
@@ -67,7 +68,8 @@ export function tokenGetter() {
     AuthService,
     AuthGuardLogin,
     OptionConfig,
-    PhotoService
+    PhotoService,
+    ToastService
   ],
   bootstrap: [AppComponent]
 })

@@ -25,7 +25,7 @@ export class ListComponent implements OnInit {
     );
   }
   setUserImage(user) {
-    return {'background-image': 'url(/assets/userImg/' + user.imgUrl + ')'};
+    return {'background-image': 'url(/images/' + user.imgUrl + ')'};
   }
   setUserAge(user) {
     return new Date().getFullYear() - new Date(user.birthday).getFullYear();

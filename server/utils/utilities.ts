@@ -1,6 +1,6 @@
 import { models } from '../models/index';
 
-export default class Util {
+class Util {
   handleResponse = (res, code, status, msg, user = null, err = null) => {
     res.status(code).json({
       status: status,
@@ -42,3 +42,5 @@ export default class Util {
       });
   }
 }
+
+export const util = new Util();

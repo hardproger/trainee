@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators, FormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastyService, ToastyConfig } from 'ng2-toasty';
 
 import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.services';
+import { ToastService } from '../services/toasty.service';
 
 
 @Component({
@@ -16,15 +16,12 @@ import { AuthService } from '../services/auth.services';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   username = new FormControl('', [Validators.email, Validators.required]);
-  password = new FormControl('', [Validators.required, Validators.minLength(6)]);
+  password = new FormControl('', Validators.required);
   constructor(private formBuilder: FormBuilder,
             private router: Router,
             private userService: UserService,
             private auth: AuthService,
-            public toastyService: ToastyService,
-            public toastyConfig: ToastyConfig) {
-    this.toastyConfig.theme = 'bootstrap';
-  }
+            public toast: ToastService) {}
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
     username: this.username,
@@ -35,22 +32,13 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.loginForm.value).subscribe(
       () => {
         this.router.navigate(['/home/list']);
-        this.toastyService.success(this.setOptions('Success', 'You have successfully loggin in!'));
+        this.toast.success('You have successfully logged in!');
       },
       error => {
         console.log(error);
-        this.toastyService.error(this.setOptions('Error', 'Username or password are invalid!'));
+        this.toast.error('Username or password are invalid!');
       }
     );
-  }
-  setOptions(title, msg) {
-    return {
-      title: title,
-      msg: msg,
-      showClose: true,
-      timeout: 2500,
-      theme: 'bootstrap'
-    };
   }
   setDangerEmail() {
     return {'error-validate' : this.username.touched && this.username.errors };

@@ -1,15 +1,17 @@
-import { models } from '../models/index';
-import Util from '../utils/utilities';
-const util = new Util();
+import * as multer from 'multer';
 
-export default class User {
+import { models } from '../models/index';
+import { util } from '../utils/utilities';
+import { config } from '../config/config';
+
+class User {
   // get all users
   getUsers = (req, res) => {
     models.User.findAll({order: [['id', 'ASC']]})
       .then(users => res.json(users));
   }
   // add or register new user
-  insert = (req, res) => {
+  addUser = (req, res) => {
     req.body.imgUrl = req.body.sex === 'female' ? 'defaultWoman.jpg' : 'defaultMan.jpg';
     req.body.role = req.body.role && req.user && req.user.role === 'admin' ? req.body.role : 'user';
     req.body.birthday = req.body.year && req.body.day && req.body.month ? new Date(req.body.year, req.body.month, req.body.day) : null;
@@ -22,7 +24,7 @@ export default class User {
       .catch((err) => util.handleResponse(res, 409, 'error', 'The username already exists!', null, err.errors[0].message));
   }
   // delete user
-  delete = (req, res) => {
+  deleteUser = (req, res) => {
     models.User.destroy({
       where: {
         id: req.params.id
@@ -33,7 +35,7 @@ export default class User {
 
   }
   // find user
-  find = (req, res) => {
+  findUser = (req, res) => {
     models.User.find({
       where: {
         id: req.params.id
@@ -42,7 +44,7 @@ export default class User {
       .catch(() => util.handleResponse(res, 404, 'error', 'User is not found!'));
   }
   // update user
-  update = (req, res) => {
+  updateUser = (req, res) => {
     models.User.find({
       where: {id: req.params.id}
     })
@@ -76,4 +78,15 @@ export default class User {
       util.handleResponse(res, 403, 'error', 'The user is not authenticated!');
     }
   }
+  uploadPhoto = (req, res) => {
+    const upload = multer(config.getMulterConfig()).single('file');
+    upload(req, res, (err) => {
+      if (err) {
+        console.log(err);
+      }
+      res.send(req.file.filename);
+    });
+  }
 }
+
+export const userCtrl = new User();

@@ -16,14 +16,14 @@
     <div class="row">
       <div class="col-md-3 col-12" *ngFor="let item of uploader.queue; let first = first;">
         <img thumbnail [image]="item?._file"/>
-        <div class="top" *ngIf="auth.currentUser.id === id">
+        <div class="top" *ngIf="auth.currentUser.role === 'admin' || 'moderator'">
           <a (click)="item.remove()">
             <i class="fa fa-trash"></i>
           </a>
         </div>
       </div>
       <div class="col-md-3 col-12" *ngFor="let photo of photos">
-        <img [src]="'/assets/userImg/' + photo.url">
+        <img [src]="'/images/' + photo.url">
         <div class="top" *ngIf="auth.currentUser.id === id">
           <a (click)="deletePhoto(photo)">
             <i class="fa fa-trash"></i>

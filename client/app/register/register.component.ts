@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import {ToastyService, ToastyConfig} from 'ng2-toasty';
 
 import { UserService } from '../services/user.service';
 import { OptionConfig } from '../services/option-config';
+import { ToastService } from '../services/toasty.service';
 
 @Component({
   selector: 'app-register',
@@ -30,13 +30,10 @@ export class RegisterComponent implements OnInit {
   comuna = new FormControl('', Validators.required);
   constructor(private userService: UserService,
               private formBuilder: FormBuilder,
-              private toastyService: ToastyService,
-              private toastyConfig: ToastyConfig,
-              public option: OptionConfig) {
-    this.toastyConfig.theme = 'bootstrap';
-    this.regStep = 1;
-  }
+              public toast: ToastService,
+              public option: OptionConfig) {}
   ngOnInit() {
+    this.regStep = 1;
     this.registerForm = this.formBuilder.group({
       sex: this.sex,
       looking: this.looking,
@@ -62,15 +59,15 @@ export class RegisterComponent implements OnInit {
           res => {
             console.log(res);
             this.registerForm.reset();
-            this.toastyService.success(this.setOptions('Success', 'You have successfully registered!'));
+            this.toast.success('You have successfully registered!');
             this.regStep = 1;
           },
           () => {
-            this.toastyService.error(this.setOptions('Error', 'Username or email have already exists!'));
+            this.toast.error('Username or email have already exists!');
           }
         );
       } else {
-        this.toastyService.error(this.setOptions('Error', 'Please, fill all the fields!'));
+        this.toast.error('Please, fill all the fields!');
       }
   }
   checkValid1() {
@@ -78,17 +75,8 @@ export class RegisterComponent implements OnInit {
     if (this.sex.valid && this.looking.valid && this.between.valid && this.living.valid) {
       this.regStep = 2;
     } else {
-      this.toastyService.error(this.setOptions('Error', 'Please, fill all the fields!'));
+      this.toast.error('Please, fill all the fields!');
     }
-  }
-  setOptions(title, msg) {
-    return {
-      title: title,
-      msg: msg,
-      showClose: true,
-      timeout: 2500,
-      theme: 'bootstrap'
-    };
   }
   setDangerEmail() {
     return {'error-validate' : this.email.touched && this.email.errors.email };

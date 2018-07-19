@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { ActivatedRoute } from '@angular/router';
-import {ToastyService, ToastyConfig} from 'ng2-toasty';
 
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
+import { ToastService } from '../services/toasty.service';
+import { AuthService } from '../services/auth.services';
 
 @Component({
   selector: 'app-photo',
@@ -13,19 +14,19 @@ import { UserService } from '../services/user.service';
 })
 
 export class PhotoComponent {
-  public uploader: FileUploader = new FileUploader({url: 'http://localhost:3000/upload'});
+  public uploader: FileUploader = new FileUploader({url: 'http://localhost:3000/api/upload'});
   id: number;
   user: User;
   constructor(private route: ActivatedRoute,
               private userService: UserService,
-              private toastyService: ToastyService,
-              private toastyConfig: ToastyConfig) {
-    this.toastyConfig.theme = 'bootstrap';
+              public toast: ToastService,
+              public auth: AuthService) {
     this.route.params.subscribe(params => {
       this.id = +params['id'];
     });
     this.getUser(this.id);
     this.uploader.onCompleteItem = (item: any, res: any, status: any, headers: any) => {
+      this.auth.currentUser.imgUrl = '/images/' + res;
       this.user.id = this.id;
       this.user.imgUrl = res;
       this.updateUser(this.user);
@@ -41,17 +42,8 @@ export class PhotoComponent {
   }
   updateUser(user: User) {
     this.userService.editUser(user).subscribe(
-      () => this.toastyService.success(this.setOptions('Success', 'Photo was successfully updated!')),
-      err => this.toastyService.error(this.setOptions('Error', err))
+      () => this.toast.success('Photo was successfully updated!'),
+      err => this.toast.error(err)
     );
-  }
-  setOptions(title, msg) {
-    return {
-      title: title,
-      msg: msg,
-      showClose: true,
-      timeout: 2500,
-      theme: 'bootstrap'
-    };
   }
 }

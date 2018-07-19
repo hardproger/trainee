@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {FileUploader} from 'ng2-file-upload';
-import {ToastyService, ToastyConfig} from 'ng2-toasty';
 
 import { Photo } from '../models/photo';
 import { PhotoService } from '../services/photo.service';
 import { AuthService } from '../services/auth.services';
+import { ToastService } from '../services/toasty.service';
 
 @Component({
   selector: 'app-gallery',
@@ -17,13 +17,11 @@ export class GalleryComponent implements OnInit {
   id: number;
   photos: Photo[] = [];
   newPhoto: Photo = {};
-  public uploader: FileUploader = new FileUploader({url: 'http://localhost:3000/upload'});
+  public uploader: FileUploader = new FileUploader({url: 'http://localhost:3000/api/upload'});
   constructor(private route: ActivatedRoute,
               private photo: PhotoService,
               private auth: AuthService,
-              private toastyService: ToastyService,
-              private toastyConfig: ToastyConfig) {
-    this.toastyConfig.theme = 'bootstrap';
+              public toast: ToastService) {
     this.route.params.subscribe(params => {
       this.id = +params['id'];
     });
@@ -43,34 +41,25 @@ export class GalleryComponent implements OnInit {
         this.photos = data;
         console.log(this.photos);
       },
-      err => this.toastyService.error(this.setOptions('Error', err))
+      err => this.toast.error(err)
     );
   }
   deletePhoto(photo: Photo) {
     this.photo.deletePhoto(photo).subscribe(
       data => {
-        this.toastyService.success(this.setOptions('Success', 'Photo was successfully deleted!'));
+        this.toast.success('Photo was successfully deleted!');
         this.getPhotos(this.id);
       },
-      err => this.toastyService.error(this.setOptions('Error', err))
+      err => this.toast.error(err)
     );
   }
   addPhoto(photo: Photo) {
     this.photo.addPhoto(photo).subscribe(
       () => {
-        this.toastyService.success(this.setOptions('Success', 'Photo was successfully added!'));
+        this.toast.success('Photo was successfully added!');
         this.getPhotos(this.id);
       },
-      err => this.toastyService.error(this.setOptions('Error', err))
+      err => this.toast.error(err)
     );
-  }
-  setOptions(title, msg) {
-    return {
-      title: title,
-      msg: msg,
-      showClose: true,
-      timeout: 2500,
-      theme: 'bootstrap'
-    };
   }
 }

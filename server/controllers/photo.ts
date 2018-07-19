@@ -1,9 +1,9 @@
-import { models } from '../models/index';
-import Util from '../utils/utilities';
 import * as fs from 'fs';
-const util = new Util;
 
-export default class Photo {
+import { models } from '../models/index';
+import { util } from '../utils/utilities';
+
+class Photo {
   getPhotos = (req, res) => {
     console.log(req.body);
     models.Photo.findAll({
@@ -67,3 +67,5 @@ export default class Photo {
       .catch(err => util.handleResponse(res, 404, 'error', 'Photo is not found!', null, err));
   }
 }
+
+export const photoCtrl = new Photo();

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ToastyService, ToastyConfig } from 'ng2-toasty';
+import { ToastService } from '../services/toasty.service';
 
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
@@ -23,10 +23,7 @@ export class AdminComponent implements OnInit {
   constructor(private userService: UserService,
               private formBuilder: FormBuilder,
               private auth: AuthService,
-              private toastyService: ToastyService,
-              private toastyConfig: ToastyConfig) {
-    this.toastyConfig.theme = 'bootstrap';
-  }
+              private toast: ToastService) {}
   ngOnInit() {
     this.getUsers();
     this.addUserForm = this.formBuilder.group({
@@ -46,7 +43,7 @@ export class AdminComponent implements OnInit {
     this.userService.deleteUser(user).subscribe(
       () => {
           this.getUsers();
-          this.toastyService.success(this.setOptions('Success', 'The user was successfully deleted'));
+          this.toast.success('The user was successfully deleted');
         }
     );
   }
@@ -56,11 +53,11 @@ export class AdminComponent implements OnInit {
         this.users.push(res);
         this.getUsers();
         this.addUserForm.reset();
-        this.toastyService.success(this.setOptions('Success', 'The user was successfully added'));
+        this.toast.success('The user was successfully added');
       },
       error => {
         console.log(error);
-        this.toastyService.error(this.setOptions('Error', 'The username has already exists!'));
+        this.toast.error('The username has already exists!');
         this.addUserForm.reset();
       }
     );
@@ -73,21 +70,12 @@ export class AdminComponent implements OnInit {
           this.auth.currentUser.role = user.role;
         }
         this.getUsers();
-        this.toastyService.success(this.setOptions('Success', 'The changes was successfully saved'));
+        this.toast.success('The changes was successfully save');
       },
       error => {
         console.log(error);
-        this.toastyService.error(this.setOptions('Error', 'The username has already exists!'));
+        this.toast.error('The username has already exists!');
       }
     );
-  }
-  setOptions(title, msg) {
-    return {
-      title: title,
-      msg: msg,
-      showClose: true,
-      timeout: 2500,
-      theme: 'bootstrap'
-    };
   }
 }

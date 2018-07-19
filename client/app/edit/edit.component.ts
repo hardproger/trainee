@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastyService, ToastyConfig } from 'ng2-toasty';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router'
 
@@ -7,6 +6,7 @@ import { User } from '../models/user';
 import { AuthService } from '../services/auth.services';
 import { UserService } from '../services/user.service';
 import { OptionConfig } from '../services/option-config';
+import { ToastService } from '../services/toasty.service';
 
 @Component({
   selector: 'app-edit',
@@ -20,13 +20,10 @@ export class EditComponent implements OnInit {
   isLoading: boolean;
   constructor(private auth: AuthService,
               private userService: UserService,
-              private toastyService: ToastyService,
-              private toastyConfig: ToastyConfig,
               private route: ActivatedRoute,
               public option: OptionConfig,
-              private router: Router) {
-    this.toastyConfig.theme = 'bootstrap';
-  }
+              private router: Router,
+              public toast: ToastService) {}
   ngOnInit() {
     this.isLoading = true;
     this.route.params.subscribe(params => {
@@ -47,21 +44,12 @@ export class EditComponent implements OnInit {
     this.userService.editUser(user).subscribe(
       () => {
         this.getUser(this.foundedUser.id);
-        this.toastyService.success(this.setOptions('success', 'The information was successfully updated!'));
+        this.toast.success('The information was successfully updated!');
       },
           err => {
         console.log(err);
-        this.toastyService.error(this.setOptions('error', err));
+        this.toast.error(err);
       }
     );
-  }
-  setOptions(title, msg) {
-    return {
-      title: title,
-      msg: msg,
-      showClose: true,
-      timeout: 2500,
-      theme: 'bootstrap'
-    };
   }
 }
