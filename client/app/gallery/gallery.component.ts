@@ -27,9 +27,6 @@ export class GalleryComponent implements OnInit {
     });
     this.uploader.onCompleteItem = (item: any, res: any, status: any, headers: any) => {
       this.uploader.queue[0].remove();
-      this.newPhoto.url = res;
-      this.newPhoto.userId = this.id;
-      this.addPhoto(this.newPhoto);
     };
   }
   ngOnInit() {

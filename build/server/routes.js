@@ -14,7 +14,7 @@ function setRoutes(app) {
     app.put('/api/user/:id', utilities_1.util.checkAuth, user_1.userCtrl.updateUser);
     app.post('/api/login', passport.authenticate('local'), user_1.userCtrl.login);
     app.get('/api/logout', utilities_1.util.checkAuth, user_1.userCtrl.logout);
-    app.get('/api/isauthenticated', user_1.userCtrl.checkLogin);
+    app.get('/api/isauthenticated', utilities_1.util.checkAuth);
     // photo endpoints
     app.get('/api/photos/:userId', utilities_1.util.checkAuth, photo_1.photoCtrl.getPhotos);
     app.post('/api/photo', utilities_1.util.checkAuth, photo_1.photoCtrl.addPhoto);

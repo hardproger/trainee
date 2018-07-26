@@ -4,7 +4,8 @@ var multer = require("multer");
 exports.multerConfig = {
     storage: multer.diskStorage({
         destination: function (req, file, next) {
-            next(null, '../public/images');
+            var dir = "/home/user/trainee/build/public/images/";
+            next(null, dir);
         },
         filename: function (req, file, next) {
             var ext = file.mimetype.split('/')[1];

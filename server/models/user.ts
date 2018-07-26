@@ -8,7 +8,6 @@ export default function (sequelize: Sequelize, dataTypes: DataTypes):
     const userSchema = sequelize.define<UserInstance, UserAttributes>('User', {
       username: {
         type: dataTypes.STRING,
-        unique: true
       },
       role: {
         type: dataTypes.STRING,
@@ -24,7 +23,6 @@ export default function (sequelize: Sequelize, dataTypes: DataTypes):
       },
       email: {
         type: dataTypes.STRING,
-        unique: true
       },
       sex: {
         type: dataTypes.STRING
@@ -98,7 +96,13 @@ export default function (sequelize: Sequelize, dataTypes: DataTypes):
       }
     },
     {
-      timestamps: false
+      timestamps: false,
+      indexes: [
+        {
+          unique: true,
+          fields: ['username', 'email']
+        }
+      ]
     });
 
     userSchema.comparePassword = (password, hash, callback) => {
@@ -111,6 +115,11 @@ export default function (sequelize: Sequelize, dataTypes: DataTypes):
       });
     };
 
+    userSchema.getUsers = () => userSchema.findAll({order: [['id', 'ASC']]});
+    userSchema.addUser = req => userSchema.findOrCreate({where: { username: req.body.username } &&
+      { email: req.body.email }, defaults: req.body});
+    userSchema.deleteUser = id => userSchema.destroy({where: {id: id}});
+    userSchema.findUser = findId => userSchema.find({where: {id: findId}});
     userSchema.beforeCreate(user => {
       const SALT_WORK_FACTOR = 10;
       bcrypt.genSalt(SALT_WORK_FACTOR)

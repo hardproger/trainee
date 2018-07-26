@@ -5,7 +5,6 @@ function default_1(sequelize, dataTypes) {
     var userSchema = sequelize.define('User', {
         username: {
             type: dataTypes.STRING,
-            unique: true
         },
         role: {
             type: dataTypes.STRING,
@@ -21,7 +20,6 @@ function default_1(sequelize, dataTypes) {
         },
         email: {
             type: dataTypes.STRING,
-            unique: true
         },
         sex: {
             type: dataTypes.STRING
@@ -94,7 +92,13 @@ function default_1(sequelize, dataTypes) {
             defaultValue: []
         }
     }, {
-        timestamps: false
+        timestamps: false,
+        indexes: [
+            {
+                unique: true,
+                fields: ['username', 'email']
+            }
+        ]
     });
     userSchema.comparePassword = function (password, hash, callback) {
         bcrypt.compare(password, hash, function (err, isMatch) {
@@ -106,6 +110,11 @@ function default_1(sequelize, dataTypes) {
             }
         });
     };
+    userSchema.getUsers = function () { return userSchema.findAll({ order: [['id', 'ASC']] }); };
+    userSchema.addUser = function (req) { return userSchema.findOrCreate({ where: { username: req.body.username } &&
+            { email: req.body.email }, defaults: req.body }); };
+    userSchema.deleteUser = function (id) { return userSchema.destroy({ where: { id: id } }); };
+    userSchema.findUser = function (findId) { return userSchema.find({ where: { id: findId } }); };
     userSchema.beforeCreate(function (user) {
         var SALT_WORK_FACTOR = 10;
         bcrypt.genSalt(SALT_WORK_FACTOR)

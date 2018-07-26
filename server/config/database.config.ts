@@ -8,10 +8,10 @@ export interface DatabaseConfig {
 }
 
 export const databaseConfig: DatabaseConfig = {
-  username: 'ayslxord',
-  password: 'fplKeeM_cxXO01AZ4-uhi5slFM8-Em0P',
-  database: 'ayslxord',
-  host: 'pellefant.db.elephantsql.com',
+  username: 'postgres',
+  password: 'user',
+  database: 'datingchile_db',
+  host: 'localhost',
   port: 5432,
   dialect: 'postgres'
 };

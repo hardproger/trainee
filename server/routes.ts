@@ -14,7 +14,7 @@ export default function setRoutes(app) {
   app.put('/api/user/:id', util.checkAuth, userCtrl.updateUser);
   app.post('/api/login', passport.authenticate('local'), userCtrl.login);
   app.get('/api/logout', util.checkAuth, userCtrl.logout);
-  app.get('/api/isauthenticated', userCtrl.checkLogin);
+  app.get('/api/isauthenticated', util.checkAuth);
   // photo endpoints
   app.get('/api/photos/:userId', util.checkAuth, photoCtrl.getPhotos);
   app.post('/api/photo', util.checkAuth, photoCtrl.addPhoto);

@@ -1,4 +1,6 @@
 import * as multer from 'multer';
+import * as mkdirp from 'mkdirp';
+
 
 export interface MulterConfig {
   storage: any;
@@ -9,7 +11,8 @@ export const multerConfig: MulterConfig = {
 
   storage: multer.diskStorage({
     destination: (req, file, next) => {
-      next(null, '../public/images');
+      const dir = `/home/user/trainee/build/public/images/`;
+      next(null, dir);
     },
 
     filename: function(req, file, next) {

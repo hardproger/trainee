@@ -7,56 +7,53 @@ import { config } from '../config/config';
 class User {
   // get all users
   getUsers = (req, res) => {
-    models.User.findAll({order: [['id', 'ASC']]})
+    models.User.getUsers()
       .then(users => res.json(users));
   }
   // add or register new user
   addUser = (req, res) => {
     req.body.imgUrl = req.body.sex === 'female' ? 'defaultWoman.jpg' : 'defaultMan.jpg';
     req.body.role = req.body.role && req.user && req.user.role === 'admin' ? req.body.role : 'user';
-    req.body.birthday = req.body.year && req.body.day && req.body.month ? new Date(req.body.year, req.body.month, req.body.day) : null;
-    // Promise.resolve().then(() => models.User.create(req.body))
-    //   .then(regUser => util.handleResponse(res, 200, 'success', 'You have successfully registered!', regUser))
-    //   .catch((err) => res.status(400).send(err));
-    models.User
-      .create(req.body)
-      .then(regUser => util.handleResponse(res, 200, 'success', 'You have successfully registered!', regUser))
-      .catch((err) => util.handleResponse(res, 409, 'error', 'The username already exists!', null, err.errors[0].message));
+    req.body.birthday = req.body.year && req.body.day && req.body.month ?
+      new Date(req.body.year, req.body.month, req.body.day) : new Date();
+    models.User.addUser(req)
+      .spread((result, created) => {
+        if (created) {
+          util.handleResponse(res, 200, 'success', 'You have successfully registered!', result);
+        } else {
+          util.handleResponse(res, 409, 'error', 'The email/username already exists!', null);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        util.handleResponse(res, 500, 'error', 'Something went wrong :(', null, err);
+      });
   }
   // delete user
   deleteUser = (req, res) => {
-    models.User.destroy({
-      where: {
-        id: req.params.id
-      }
-    })
+    models.User.deleteUser(req.params.id)
       .then(() => util.handleResponse(res, 200, 'success', 'User was successfully deleted!'))
       .catch(() => util.handleResponse(res, 404, 'error', 'User is not found!'));
-
   }
   // find user
   findUser = (req, res) => {
-    models.User.find({
-      where: {
-        id: req.params.id
-      }
-    }).then(user => res.json(user))
+    models.User.findUser(req.params.id)
+      .then(user => res.json(user))
       .catch(() => util.handleResponse(res, 404, 'error', 'User is not found!'));
   }
   // update user
   updateUser = (req, res) => {
-    models.User.find({
-      where: {id: req.params.id}
-    })
+    models.User.findUser(req.params.id)
       .then(user => {
-        if (user.role === 'admin' && req.user.role === 'moderator') {
+        if ((req.user.role === 'user' || req.user.role === 'moderator') && user.id !== req.user.id) {
           util.handleResponse(res, 403, 'error', 'You haven\'t permission for do this!');
+          return;
         }
         user.updateAttributes(req.body)
-          .then(upUser => util.handleResponse(res, 200, 'success', 'The information was successfully changed!'))
+          .then(() => util.handleResponse(res, 200, 'success', 'The information was successfully changed!'))
           .catch(err => util.handleResponse(res, 409, 'error', 'The username has already exists!', null, err.errors[0].message));
       })
-      .catch(err => util.handleResponse(res, 400, 'error', err));
+      .catch(err => util.handleResponse(res, 500, 'error', err));
   }
   login = (req, res) => {
     const user = {
@@ -71,20 +68,22 @@ class User {
     req.logout();
     util.handleResponse(res, 200, 'success', 'You have successfully logged off');
   }
-  checkLogin = (req, res) => {
-    if (req.isAuthenticated()) {
-      util.handleResponse(res, 200, 'success', 'The user is authenticated!');
-    } else {
-      util.handleResponse(res, 403, 'error', 'The user is not authenticated!');
-    }
-  }
   uploadPhoto = (req, res) => {
     const upload = multer(config.getMulterConfig()).single('file');
     upload(req, res, (err) => {
       if (err) {
         console.log(err);
+        return;
       }
-      res.send(req.file.filename);
+      models.User.findUser(req.user.id)
+        .then(user => {
+          user.updateAttributes(req.body)
+            .then(upUser => {
+              res.send(req.file.filename);
+              util.handleResponse(res, 200, 'success', 'Photo was successfully changed!', upUser);
+            })
+            .catch(error => util.handleResponse(res, 500, 'error', 'Error', null, error));
+        });
     });
   }
 }

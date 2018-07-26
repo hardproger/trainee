@@ -27,9 +27,7 @@ export class PhotoComponent {
     this.getUser(this.id);
     this.uploader.onCompleteItem = (item: any, res: any, status: any, headers: any) => {
       this.auth.currentUser.imgUrl = '/images/' + res;
-      this.user.id = this.id;
-      this.user.imgUrl = res;
-      this.updateUser(this.user);
+      this.toast.success('Photo was successfully added!');
     };
   }
   getUser(id) {
@@ -38,12 +36,6 @@ export class PhotoComponent {
         this.user = data;
       },
       err => console.log(err)
-    );
-  }
-  updateUser(user: User) {
-    this.userService.editUser(user).subscribe(
-      () => this.toast.success('Photo was successfully updated!'),
-      err => this.toast.error(err)
     );
   }
 }

@@ -50,6 +50,6 @@ export class AuthService {
     this.currentUser.id = tokenUser.id;
     this.currentUser.username = tokenUser.username;
     this.currentUser.role = tokenUser.role;
-    this.currentUser.imgUrl = '/images/' + tokenUser.imgUrl;
+    this.currentUser.imgUrl = `/images/${tokenUser.imgUrl}`;
   }
 }
